@@ -5,7 +5,7 @@ const { API_KEY, API_URL } = process.env;
 // Traigo info de la api
 const getApiData = async () => {
   // debe ser asyncronico porque no sabes cuanto tarda la api en contestar
-  const apiInfo = await axios.get(`${API_URL}?key=${API_KEY}`)
+  const apiInfo = await axios.get(`${API_URL}?key=${API_KEY}`,{headers:{'Accept-Encoding':'identity'}})
   /*.then((res) => console.log(res));*/
     .then((res) =>
     res.data.results.map((video) => {

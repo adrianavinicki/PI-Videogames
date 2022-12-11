@@ -13,9 +13,9 @@ const { getAllVideogames } = require('../controllers/getAllVideogames');
 // Ejemplo: router.use('/auth', authRouter);
 
 router.get("/videogames", async (req, res) => {
-  //const { id, name, description, released, rating, platforms, background_image } = req.body;
+  
     try {
-      let allVideo = await getAllVideogames(/*{ id, name, description, released, rating, platforms, background_image }*/);
+      let allVideo = await getAllVideogames();
       res.status(200).json(allVideo);
     } catch (err) {
       console.log(err);
@@ -24,7 +24,7 @@ router.get("/videogames", async (req, res) => {
   
   module.exports = router;
 
-
+//const { id, name, description, released, rating, platforms, background_image } = req.body;
 
 /*router.get('/videogames', async (req, res) =>{
     const name = req.query.name; //aplico ambas busquedas con name o sin name
