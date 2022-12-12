@@ -3,10 +3,10 @@ require("dotenv").config(); //primeromejor traer el axios
 const { API_KEY, API_URL } = process.env;
 
 // Traigo info de la api
-/*GET /videogames:
-Obtener un listado de los videojuegos
-Debe devolver solo los datos necesarios para la ruta principal*/
-const getApiData = async () => {
+/*[ ] GET /videogames?name="...":
+Obtener un listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter
+Si no existe ningún videojuego mostrar un mensaje adecuado*/
+const getApiName = async () => {
   // debe ser asyncronico porque no sabes cuanto tarda la api en contestar
   const apiInfo = await axios.get(`${API_URL}?key=${API_KEY}`,{headers:{'Accept-Encoding':'identity'}})
   /*.then((res) => console.log(res));*/
@@ -30,6 +30,4 @@ const getApiData = async () => {
 
 
 
-module.exports = { getApiData };
-
-
+module.exports = { getApiName };
