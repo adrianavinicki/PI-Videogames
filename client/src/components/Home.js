@@ -26,7 +26,8 @@ function Home() {
           description={video.description}
           released={video.released}
           rating={video.rating}
-          platforms={video.platforms}
+          platforms={video.platforms.length === 0 ? (<div>No Platform Available</div>) 
+          : (video.platforms.map ((platform)=> platform.name))}
           background_image={video.background_image}
         />
       ))
