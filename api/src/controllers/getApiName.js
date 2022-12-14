@@ -7,7 +7,7 @@ const { API_KEY, API_URL } = process.env;
 Obtener un listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter
 Si no existe ningún videojuego mostrar un mensaje adecuado*/
 const getApiName = async () => {
- const
+ 
   const apiInfo = await axios.get(`${API_URL}?key=${API_KEY}`,{headers:{'Accept-Encoding':'identity'}})
   /*.then((res) => console.log(res));*/
     .then((res) =>
@@ -15,7 +15,7 @@ const getApiName = async () => {
       return {
         id: video.id,
         name: video.name,
-        description: video.slug,
+        //description: video.slug,
         released: video.released,
         rating: video.rating,
         platforms: video.platforms.map(el => el.platform.name),

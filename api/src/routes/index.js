@@ -8,6 +8,8 @@ const e = require('express');
 const router = Router();
 
 const { getAllVideogames } = require('../controllers/getAllVideogames');
+const { getIdAll} = require('../controllers/getIdAll');
+
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -21,6 +23,24 @@ router.get("/videogames", async (req, res) => {
       console.log(err);
     }
   });
+
+router.get("/videogames/:id", async (req, res) => {
+  const { id } = req.params;
+  
+    try {
+      let video = await getIdAll({id});
+      res.status(200).json(video);
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+
+
+
+
+
+
   
   module.exports = router;
 
