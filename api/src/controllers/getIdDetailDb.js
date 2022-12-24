@@ -17,9 +17,16 @@ const getIdDetailDb = async (idVideogame) => {
         rating: video.rating,
         platforms: video.platforms.map(el => el.platform.name),
         background_image: video.background_image,
-        genre: video.genres.map(el => el.name)
-      };
+        //genre: video.genres.map(el => el.name)
+        include: {
+          model: Genre,
+          attributes: ['name'], //aca va lo unico que quiero igualmentente no hay mas
+          through: {
+              attributes: []
+          }
+      }
     }
+  }
     return "El Id ingresado no corresponde a un videogame";
 }
 

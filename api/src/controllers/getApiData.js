@@ -30,7 +30,7 @@ const getApiData = async () => {
       return {
         id: video.id,
         name: video.name,
-        //description: video.slug,// ver mas adelante
+        slug: video.slug,// ver mas adelante
         released: video.released,
         rating: video.rating,
         platforms: video.platforms.map(el => el.platform.name),

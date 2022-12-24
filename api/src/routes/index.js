@@ -9,19 +9,25 @@ const router = Router();
 
 const { getAllVideogames } = require('../controllers/getAllVideogames');
 const { getIdAll} = require('../controllers/getIdAll');
-const { getApiName} = require('../controllers/getApiName');//luego poner el total
+
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.get("/videogames", async (req, res, next) => {
+router.get("/videogames", async (req, res, next) => { 
+  const name = req.query.name; //aplico ambas busquedas con name o sin name
   
-    try {
-      let allVideo = await getAllVideogames();
-      res.status(200).json(allVideo);
-    } catch (err) {
-      console.log(err);
+    let videogamesTodos =  await getAllVideogames();
+    if (name){
+        const newname= name.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'').replace(/' '/g,'-').toLowerCase();
+        let videogameName = await videogamesTodos.filter(el => el.slug.includes(newname)); 
+        videogameName.length ? // me falta el limite de 15 videojuegos cuando se envia un name
+        res.status(200).send(videogameName):
+        res.status(404).send('No se encuentra el videojuego requerido');
+    } else{
+        res.status(200).send(videogamesTodos)
     }
+    
   });
 
 router.get("/videogames/:id", async (req, res) => {
@@ -34,18 +40,31 @@ router.get("/videogames/:id", async (req, res) => {
       console.log(err);
     }
   });
+/* POST /videogames:
+Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
+Crea un videojuego en la base de datos, relacionado a sus géneros.*/
+router.post("/videogames", async (req, res) => {
+  let {
+    id,
+    name,
+    description,
+    released,
+    rating,
+    platforms,
+    background_image,
+    genre
+  } = req.body;
 
-  router.get("/videogames?name", async (req, res) => { ////trae todo hay que arreglarlo
-    const { namereq } = req.query;
-    
-      try {
-        let game = await getApiName({ namereq });
-        res.status(200).json(game);
-      } catch (err) {
-        console.log(err);
-      }
-    });
-
+  let videogameCreated = await Videogame.create({
+    id,
+    name,
+    description,
+    released,
+    rating,
+    platforms,
+    background_image,
+  })  
+ })
 
 
 
@@ -89,4 +108,20 @@ router.get("/videogames/:id", async (req, res) => {
     next(error)
   }
 });*/
-
+/*try {
+  let allVideo = await getAllVideogames();
+  res.status(200).json(allVideo);
+} catch (err) {
+  console.log(err);
+}*/
+/*
+  router.get("/videogames?name", async (req, res) => { 
+    const { apiName } = req.query;
+    
+      try {
+        let game = await getApiName(apiName);
+        res.status(200).json(game);
+      } catch (err) {
+        console.log(err);
+      }
+    });*/
