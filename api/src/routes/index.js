@@ -9,12 +9,12 @@ const router = Router();
 
 const { getAllVideogames } = require('../controllers/getAllVideogames');
 const { getIdAll} = require('../controllers/getIdAll');
-
+const { getApiName} = require('../controllers/getApiName');//luego poner el total
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.get("/videogames", async (req, res) => {
+router.get("/videogames", async (req, res, next) => {
   
     try {
       let allVideo = await getAllVideogames();
@@ -25,15 +25,26 @@ router.get("/videogames", async (req, res) => {
   });
 
 router.get("/videogames/:id", async (req, res) => {
-  const { id } = req.params;
+  const idDetail = req.params.id;
   
     try {
-      let video = await getIdAll({id});
+      let video = await getIdAll(idDetail);
       res.status(200).json(video);
     } catch (err) {
       console.log(err);
     }
   });
+
+  router.get("/videogames?name", async (req, res) => { ////trae todo hay que arreglarlo
+    const { namereq } = req.query;
+    
+      try {
+        let game = await getApiName({ namereq });
+        res.status(200).json(game);
+      } catch (err) {
+        console.log(err);
+      }
+    });
 
 
 
@@ -59,4 +70,23 @@ router.get("/videogames/:id", async (req, res) => {
     }
 })*/
 
+/*const getVideogamesById = router.get('/:id', async (req, res, next) => {
+  const { id } = req.params
+
+  try {
+    const regex = /([a-zA-Z]+([0-9]+[a-zA-Z]+)+)/
+    if (regex.test(id)) {
+      const fromDB = await videogameByIdDB(id)
+      return res.json(fromDB)
+      
+    } else  {
+      const fromAPI = await getVideogameById(id)
+      console.log(fromAPI)
+      return res.json(fromAPI)
+    } 
+
+  } catch (error) {
+    next(error)
+  }
+});*/
 

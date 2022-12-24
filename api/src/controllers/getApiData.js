@@ -17,11 +17,13 @@ Géneros
 [ ] Botones/Opciones para filtrar por género y por videojuego existente o agregado por nosotros
 [ ] Botones/Opciones para ordenar tanto ascendentemente como descendentemente los videojuegos por orden alfabético y por rating
 [ ] Paginado para ir buscando y mostrando los siguientes videojuegos, 15 juegos por pagina, mostrando los primeros 15 en la primer pagina.
-*/
+IMPORTANTE: Dentro de la Ruta Principal se deben mostrar tanto los videjuegos traidos desde la API como así también los de la base de datos.
+ Debido a que en la API existen alrededor de 500 mil juegos, por cuestiones de performance pueden tomar la simplificación de obtener 
+ y paginar los primeras 100.*/
 
 const getApiData = async () => {
   // debe ser asyncronico porque no sabes cuanto tarda la api en contestar
-  const apiInfo = await axios.get(`${API_URL}?key=${API_KEY}`,{headers:{'Accept-Encoding':'identity'}},{params:{_limit: 100}})// ?al colocar el limit toma un limite  de 20 ids no importa la cantidad que coloco
+  const apiInfo = await axios.get(`${API_URL}?key=${API_KEY}&page_size=100`,{headers:{'Accept-Encoding':'identity'}})// ?al colocar el page size toma un limite  de 40 ids no importa la cantidad que coloco
   /*.then((res) => console.log(res));*/
     .then((res) =>
     res.data.results.map((video) => {

@@ -7,6 +7,7 @@ const Genre = require('../models/Genre'); // idem arriba
 // Traigo info de mi base de datos
 
 const getIdDetailDb = async (idVideogame) => {
+  if(idVideogame){
     const video = await Videogame.findByPk(idVideogame);
     if(!video) return console.log("not found");
     else return {
@@ -18,7 +19,8 @@ const getIdDetailDb = async (idVideogame) => {
         background_image: video.background_image,
         genre: video.genres.map(el => el.name)
       };
-
+    }
+    return "El Id ingresado no corresponde a un videogame";
 }
 
 module.exports = { getIdDetailDb };     
