@@ -9,7 +9,7 @@ const router = Router();
 
 const { getAllVideogames } = require('../controllers/getAllVideogames');
 const { getIdAll} = require('../controllers/getIdAll');
-
+const { getGenresApi } = require('../controllers/getGenresApi');
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -40,6 +40,17 @@ router.get("/videogames/:id", async (req, res) => {
       console.log(err);
     }
   });
+  
+
+router.get("/genres", async (req, res) => {
+  try {
+    let getGenres = await getGenresApi();
+    res.status(200).json(getGenres);
+  } catch (err) {
+    console.log(err);
+  }
+});
+  
 /* POST /videogames:
 Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
 Crea un videojuego en la base de datos, relacionado a sus géneros.*/
@@ -47,23 +58,30 @@ router.post("/videogames", async (req, res) => {
   let {
     id,
     name,
+    slug,
     description,
     released,
     rating,
     platforms,
     background_image,
+    createdInDb,
     genre
   } = req.body;
 
   let videogameCreated = await Videogame.create({
     id,
     name,
+    slug,
     description,
     released,
     rating,
     platforms,
     background_image,
+    createdInDb
   })  
+   let genreDb = await Genre.findAll({
+    where: { name: genre }
+   })
  })
 
 
