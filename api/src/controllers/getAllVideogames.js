@@ -5,7 +5,7 @@ const getAllVideogames = async () =>{
     const apiData = await getApiData();
     const infoDb = await getInfoDb();
     const infoTotal = apiData.concat(infoDb);
-    return infoTotal; // hay que descomentar el 6 y el 7 y devolver infoTotal
+    return infoTotal; 
   }
 
   module.exports = { getAllVideogames }; 
