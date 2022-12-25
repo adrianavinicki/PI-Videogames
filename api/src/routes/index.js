@@ -1,47 +1,50 @@
-const { Router } = require('express');
+const { Router } = require("express");
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
-const e = require('express');
+const e = require("express");
 
 const router = Router();
 
-const { getAllVideogames } = require('../controllers/getAllVideogames');
-const { getIdAll} = require('../controllers/getIdAll');
-const { getGenresApi } = require('../controllers/getGenresApi');
-const { Genre, Videogame } = require('../db.js');
+const { getAllVideogames } = require("../controllers/getAllVideogames");
+const { getIdAll } = require("../controllers/getIdAll");
+const { getGenresApi } = require("../controllers/getGenresApi");
+const { Genre, Videogame } = require("../db.js");
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.get("/videogames", async (req, res, next) => { 
+router.get("/videogames", async (req, res, next) => {
   const name = req.query.name; //aplico ambas busquedas con name o sin name
-  
-    let videogamesTodos =  await getAllVideogames();
-    if (name){
-        const newname= name.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'').replace(/' '/g,'-').toLowerCase();
-        let videogameName = await videogamesTodos.filter(el => el.slug.includes(newname)); 
-        videogameName.length ? // me falta el limite de 15 videojuegos cuando se envia un name
-        res.status(200).send(videogameName):
-        res.status(404).send('No se encuentra el videojuego requerido');
-    } else{
-        res.status(200).send(videogamesTodos)
-    }
-    
-  });
+
+  let videogamesTodos = await getAllVideogames();
+  if (name) {
+    const newname = name
+      .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
+      .replace(/' '/g, "-")
+      .toLowerCase();
+    let videogameName = await videogamesTodos.filter((el) =>
+      el.slug.includes(newname)
+    );
+    videogameName.length // me falta el limite de 15 videojuegos cuando se envia un name
+      ? res.status(200).send(videogameName)
+      : res.status(404).send("No se encuentra el videojuego requerido");
+  } else {
+    res.status(200).send(videogamesTodos);
+  }
+});
 
 router.get("/videogames/:id", async (req, res) => {
   const idDetail = req.params.id;
-  
-    try {
-      let video = await getIdAll(idDetail);
-      res.status(200).json(video);
-    } catch (err) {
-      console.log(err);
-    }
-  });
-  
+
+  try {
+    let video = await getIdAll(idDetail);
+    res.status(200).json(video);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 router.get("/genres", async (req, res) => {
   try {
@@ -51,47 +54,47 @@ router.get("/genres", async (req, res) => {
     console.log(err);
   }
 });
-  
+
 /* POST /videogames:
 Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
 Crea un videojuego en la base de datos, relacionado a sus géneros.*/
 router.post("/videogames", async (req, res) => {
-  const {
-    name,
-    slug,
-    description,
-    released,
-    rating,
-    platforms,
-    background_image,
-    createdInDb,
-    genre
-   } = req.body;
+  try {
+    const {
+      name,
+      slug,
+      description,
+      released,
+      rating,
+      platforms,
+      background_image,
+      createdInDb,
+      genre,
+    } = req.body;
+    if (!name || !description || !platforms)
+      return res.status(400).send({ message: "information required" });
 
-  let videogameCreated = await Videogame.create({
-    name,
-    slug,
-    description,
-    released,
-    rating,
-    platforms,
-    background_image,
-    createdInDb
-   })  
-  let genreDb = await Genre.findAll({
-    where: { name: genre }
-   })
-  videogameCreated.addGenre(genreDb);
-  res.send("Videogame creado con exito");
- });
+    let videogameCreated = await Videogame.create({
+      name,
+      slug,
+      description,
+      released,
+      rating,
+      platforms,
+      background_image,
+      createdInDb,
+    });
+    let genreDb = await Genre.findAll({
+      where: { name: genre },
+    });
+    await videogameCreated.addGenre(genreDb);
+    res.status(200).send("Videogame creado con exito");
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+});
 
-
-
-
-
-
-  
-  module.exports = router;
+module.exports = router;
 
 //const { id, name, description, released, rating, platforms, background_image } = req.body;
 
