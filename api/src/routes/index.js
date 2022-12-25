@@ -9,7 +9,7 @@ const router = Router();
 
 const { getAllVideogames } = require("../controllers/getAllVideogames");
 const { getIdAll } = require("../controllers/getIdAll");
-const { getGenresApi } = require("../controllers/getGenresApi");
+const { getGenres } = require("../controllers/getGenres");
 const { Genre, Videogame } = require("../db.js");
 
 // Configurar los routers
@@ -48,8 +48,8 @@ router.get("/videogames/:id", async (req, res) => {
 
 router.get("/genres", async (req, res) => {
   try {
-    let getGenres = await getGenresApi();
-    res.status(200).json(getGenres);
+    let getGen = await getGenres();
+    res.status(200).json(getGen);
   } catch (err) {
     console.log(err);
   }

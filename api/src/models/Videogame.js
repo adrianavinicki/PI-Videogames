@@ -16,14 +16,14 @@ module.exports = (sequelize) => {
     },
     slug: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     description: {
       type: DataTypes.TEXT,
       allowNull: false
     },
     released: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATEONLY,
       allowNull: true 
     },
     rating: {
@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     platforms: {
-      type: DataTypes.STRING, // ? ver si corresponde o NO correspoonde .ARRAY x que es un array de varias plataformas
+      type: DataTypes.JSON, // ? ver si corresponde o NO correspoonde .ARRAY x que es un array de varias plataformas
       allowNull: false
     },
     background_image: {

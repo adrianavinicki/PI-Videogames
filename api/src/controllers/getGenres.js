@@ -7,7 +7,7 @@ const { Genre } = require('../db.js')
   Obtener todos los tipos de géneros de videojuegos posibles
   En una primera instancia deberán traerlos desde rawg y guardarlos en su propia base de datos y luego ya utilizarlos desde allí*/
 
-const getGenresApi = async () => {
+const getGenres = async () => {
   // debe ser asyncronico porque no sabes cuanto tarda la api en contestar
   const apiGenre = await axios.get(`${API_URLGenres}?key=${API_KEY}`,{headers:{'Accept-Encoding':'identity'}})// ?al colocar el page size toma un limite  de 40 ids no importa la cantidad que coloco
   /*.then((res) => console.log(res));*/
@@ -23,13 +23,15 @@ const getGenresApi = async () => {
       where: {name: el.name}
     })
   })
-  return apiGenre;
+  //return apiGenre;
+  const genDb = await Genre.findAll();
+  return genDb;
 };
 
 
 
 
 
-module.exports = { getGenresApi };
+module.exports = { getGenres };
 
 

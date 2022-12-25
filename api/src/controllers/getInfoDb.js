@@ -1,6 +1,7 @@
 //const axios = require('axios'); // instale axios para hacer las consultas a api, con 
 //require('dotenv').config(); //primeromejor traer el axios
 //const { API_KEY } = process.env; 
+const { findAll } = require('sequelize');
 const Videogame = require('../models/Videogame'); // es necesario traer los modelos directos de su carpeta o con traerlos de la db ya estaria?
 const Genre = require('../models/Genre'); // idem arriba
 
