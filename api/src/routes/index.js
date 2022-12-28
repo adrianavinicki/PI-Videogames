@@ -22,12 +22,12 @@ router.get("/videogames", async (req, res, next) => {
   if (name) {
     const newname = name
       .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
-      .replace(/' '/g, "-")
+      .replace(' ', "-")
       .toLowerCase();
     let videogameName = await videogamesTodos.filter((el) =>
       el.slug.includes(newname)
     );
-    videogameName.length // me falta el limite de 15 videojuegos cuando se envia un name
+    videogameName.length 
       ? res.status(200).send(videogameName)
       : res.status(404).send("No se encuentra el videojuego requerido");
   } else {

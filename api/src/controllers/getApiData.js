@@ -23,7 +23,7 @@ IMPORTANTE: Dentro de la Ruta Principal se deben mostrar tanto los videjuegos tr
 
 const getApiData = async () => {
   // debe ser asyncronico porque no sabes cuanto tarda la api en contestar
-  const apiInfo = await axios.get(`${API_URL}?key=${API_KEY}&page_size=100`,{headers:{'Accept-Encoding':'identity'}})// ?al colocar el page size toma un limite  de 40 ids no importa la cantidad que coloco
+  const apiInfo = await axios.get(`${API_URL}?key=${API_KEY}&page_size=1000`,{headers:{'Accept-Encoding':'identity'}})// ?al colocar el page size toma un limite  de 40 ids no importa la cantidad que coloco
   /*.then((res) => console.log(res));*/
     .then((res) =>
     res.data.results.map((video) => {
