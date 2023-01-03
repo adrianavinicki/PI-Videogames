@@ -8,4 +8,4 @@ const getAllVideogames = async () =>{
     return infoTotal; 
   }
 
-  module.exports = { getAllVideogames }; 
+  module.exports = { getAllVideogames };

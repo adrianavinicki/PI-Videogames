@@ -10,7 +10,7 @@ const getInfoDb = async () => {
     return await Videogame.findAll({ 
         include: {
             model: Genre,
-            attributes: ['name'], //aca va lo unico que quiero igualmentente no hay mas
+            attributes: ['name'], //aca va lo unico que quiero
             through: {
                 attributes: []
             }
@@ -19,4 +19,4 @@ const getInfoDb = async () => {
     })
 }
 
-module.exports = { getInfoDb };     
+module.exports = { getInfoDb };  

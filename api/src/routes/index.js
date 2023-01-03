@@ -7,58 +7,50 @@ const e = require("express");
 
 const router = Router();
 
-const { getAllVideogames } = require("../controllers/getAllVideogames");
-const { getIdAll } = require("../controllers/getIdAll");
-const { getGenres } = require("../controllers/getGenres");
+//const { getAllVideogames } = require("../controllers/getAllVideogames");
+//const getApiData = require("../controllers/getApiData");
+//const { getIdAll } = require("../controllers/getIdAll");
+const getGenres = require("../controllers/getGenres");
 const { Genre, Videogame } = require("../db.js");
+const videogameController = require("../controllers/videogameController.js");
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+/* GET /videogames:
+Obtener un listado de los videojuegos
+Debe devolver solo los datos necesarios para la ruta principal*/
 
-router.get("/videogames", async (req, res, next) => {
-  const name = req.query.name; //aplico ambas busquedas con name o sin name
+router.get("/videogames", videogameController.getVideogames);
 
-  let videogamesTodos = await getAllVideogames();
-  if (name) {
-    const newname = name
-      .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
-      .replace(' ', "-")
-      .toLowerCase();
-    let videogameName = await videogamesTodos.filter((el) =>
-      el.slug.includes(newname)
-    );
-    videogameName.length 
-      ? res.status(200).send(videogameName)
-      : res.status(404).send("No se encuentra el videojuego requerido");
-  } else {
-    res.status(200).send(videogamesTodos);
-  }
-});
+/* GET /videogames?name="...":
+Obtener un listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter
+Si no existe ningún videojuego mostrar un mensaje adecuado*/
 
-router.get("/videogames/:id", async (req, res) => {
-  const idDetail = req.params.id;
+router.get("/videogames?name", videogameController.getVideogames);
 
-  try {
-    let video = await getIdAll(idDetail);
-    res.status(200).json(video);
-  } catch (err) {
-    console.log(err);
-  }
-});
+/* GET /videogame/{idVideogame}:
+Obtener el detalle de un videojuego en particular
+Debe traer solo los datos pedidos en la ruta de detalle de videojuego
+Incluir los géneros asociados*/
 
-router.get("/genres", async (req, res) => {
-  try {
-    let getGen = await getGenres();
-    res.status(200).json(getGen);
-  } catch (err) {
-    console.log(err);
-  }
-});
+router.get("/videogames/:id", videogameController.getById);
+
+/*GET /genres:
+Obtener todos los tipos de géneros de videojuegos posibles
+En una primera instancia deberán traerlos desde rawg y guardarlos en su propia base de datos y luego ya utilizarlos desde allí
+*/
+router.get("/genres", getGenres.getGenre);
 
 /* POST /videogames:
 Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
 Crea un videojuego en la base de datos, relacionado a sus géneros.*/
-router.post("/videogames", async (req, res) => {
+
+
+router.post("/videogames", videogameController.addVideogame);
+
+module.exports = router;
+
+/*router.post("/videogames", async (req, res) => {
   try {
     const {
       name,
@@ -88,62 +80,38 @@ router.post("/videogames", async (req, res) => {
       where: { name: genre },
     });
     await videogameCreated.addGenre(genreDb);
-    res.status(200).send("Videogame creado con exito");
+    res.status(200).send("Videogame creado con exito");//puedo poner que devuelva el creado videogameCreated
   } catch (error) {
     res.status(404).send({ error: error.message });
   }
 });
+router.get("/videogames", async (req, res, next) => {
+  const name = req.query.name; //aplico ambas busquedas con name o sin name
 
-module.exports = router;
+  let videogamesTodos = await getAllVideogames();
+  if (name) {
+    const newname = name
+      .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
+      .replace(' ', "-")
+      .toLowerCase();
+    let videogameName = await videogamesTodos.filter((el) =>
+      el.slug.includes(newname)
+    );
+    videogameName.length 
+      ? res.status(200).send(videogameName)
+      : res.status(404).send("No se encuentra el videojuego requerido");
+  } else {
+    res.status(200).send(videogamesTodos);
+  }
+});
 
-//const { id, name, description, released, rating, platforms, background_image } = req.body;
-
-/*router.get('/videogames', async (req, res) =>{
-    const name = req.query.name; //aplico ambas busquedas con name o sin name
-    let videogamesTodos =  await getAllVideogames();
-    if (name){
-        let videogameName = await videogamesTodos.filter(el => el.name.toLowerCase().includes(name.toLowerCase())); // pongo todo en lower case para asegurarme que pueda compararse
-        videogameName.length ? // me falta el limite de 15 videojuegos cuando se envia un name
-        res.status(200).send(videogameName):
-        res.status(404).send('No se encuentra el videojuego requerido');
-    } else{
-        res.status(200).send(videogamesTodos)
-    }
-})*/
-
-/*const getVideogamesById = router.get('/:id', async (req, res, next) => {
-  const { id } = req.params
+router.get("/videogames/:id", async (req, res) => {
+  const idDetail = req.params.id;
 
   try {
-    const regex = /([a-zA-Z]+([0-9]+[a-zA-Z]+)+)/
-    if (regex.test(id)) {
-      const fromDB = await videogameByIdDB(id)
-      return res.json(fromDB)
-      
-    } else  {
-      const fromAPI = await getVideogameById(id)
-      console.log(fromAPI)
-      return res.json(fromAPI)
-    } 
-
-  } catch (error) {
-    next(error)
+    let video = await getIdAll(idDetail);
+    res.status(200).json(video);
+  } catch (err) {
+    console.log(err);
   }
 });*/
-/*try {
-  let allVideo = await getAllVideogames();
-  res.status(200).json(allVideo);
-} catch (err) {
-  console.log(err);
-}*/
-/*
-  router.get("/videogames?name", async (req, res) => { 
-    const { apiName } = req.query;
-    
-      try {
-        let game = await getApiName(apiName);
-        res.status(200).json(game);
-      } catch (err) {
-        console.log(err);
-      }
-    });*/
