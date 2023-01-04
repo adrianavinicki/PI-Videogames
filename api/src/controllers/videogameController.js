@@ -15,7 +15,6 @@ async function addVideogame(req, res, next) {
     const id = uuidv4();
     let {
       name,
-      slug,
       description,
       released,
       rating,
@@ -27,10 +26,12 @@ async function addVideogame(req, res, next) {
     if (!name || !description || !platforms)
       return res.status(400).send({ message: "information required" });
 
+      //deberia colocar un if que si el slug que surgiria del body name existe en la base de datos deberia rechazar la creacion
+
     let videogameCreated = await Videogame.create({
       id,
       name,
-      slug,
+      slug : name.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "").replace(/ /g, "-").toLowerCase(),
       description,
       released,
       rating,
@@ -65,7 +66,7 @@ async function getVideogames(req, res, next) {
   if (name) {
     const newname = name
       .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
-      .replace(' ', "-")
+      .replace(/ /g, "-")
       .toLowerCase();
     let videogameName = await videogamesTodos.filter((el) =>
       el.slug.includes(newname)
