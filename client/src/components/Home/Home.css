@@ -1,4 +1,63 @@
-.cards{
-    display: flex;
-    flex-wrap: wrap;
-  }
+/* PRINCIPAL */
+
+.principal {
+  position: relative;
+  width: 1440px;
+  height: 2125px;
+
+  background: #ececec;
+}
+
+/* loading */
+
+.loading {
+  position: absolute;
+  width: 1007px;
+  height: 243px;
+  left: 216px;
+  top: 396px; 
+}
+
+/* header */
+
+.header {
+  position: absolute;
+  width: 1283px;
+  height: 38px;
+  left: 52px;
+  top: 39px;
+}
+
+/* cards juegos */
+
+.cards {
+  position: absolute;
+  width: 1215px;
+  height: 1814px;
+  left: 112px;
+  top: 156px;
+}
+
+/* paginado */
+
+.paginado {
+  position: absolute;
+  width: 243px;
+  height: 35px;
+  left: 598px;
+  top: 2049px;
+}
+
+/* btn agregar */
+
+.btn_agregar {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  right: 43px;
+  bottom: 43px;
+
+  background: "../../../../images/bottonmas.jpeg", rgba(255, 255, 255, 0.8);
+  border: 6px solid #535353;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

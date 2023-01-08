@@ -1,0 +1,54 @@
+.landing_page {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  background: #ffffff;
+}
+
+.landing_tittle {
+  position: absolute;
+  width: 940px;
+  height: 94px;
+  left: 250px;
+  top: 156px;
+  font-family: "Edge12";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 34px;
+  line-height: 34px;
+  text-align: center;
+  color: #535353;
+}
+
+.langing_packman {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  margin-right: auto;
+  left: 1215px;
+  top: 140px; 
+}
+
+.landing_gif {
+  position: absolute;
+  /*width: 57px;
+  height: 53px;*/
+  left: 416px;
+  top: 396px; 
+}
+
+.landing_izqposition {
+  position: absolute;
+  width: 184px;
+  height: 244px;
+  left: 75px;
+  top: 175px;
+}
+
+.landing_button {
+  position: absolute;
+  width: 307px;
+  height: 88px;
+  left: 566px;
+  top: 775px;
+}
