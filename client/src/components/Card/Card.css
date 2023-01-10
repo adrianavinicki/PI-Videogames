@@ -1,8 +1,9 @@
 .video-card{
-    border: 1px solid black;
+    border: 1px solid rgb(111, 111, 82);
     border-radius: 1rem;
+    border-color: bisque;
     margin: 1rem;
-    width: 20rem;
+    width: 15rem;
     padding: 1rem;
   }
   

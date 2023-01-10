@@ -1,3 +1,4 @@
+/*
 .landing_page {
   position: relative;
   width: 1440px;
@@ -31,8 +32,8 @@
 
 .landing_gif {
   position: absolute;
-  /*width: 57px;
-  height: 53px;*/
+  width: 57px;
+  height: 53px;
   left: 416px;
   top: 396px; 
 }
@@ -51,4 +52,85 @@
   height: 88px;
   left: 566px;
   top: 775px;
+}*/
+/*/////*/
+
+
+
+
+.landing_page {
+  width: 100vw;
+  height: 100vh;
+  /* background: linear-gradient(rgba(150, 177, 245, 0.75), rgba(5, 7, 12, 0.75));*/
+  /* background-image: url('../image/personas1.jpg');*/
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: -40px;
+  padding-top: 40px;
+  /*background: #b8eff1;*/
+  background: rgb(1, 33, 7);
+}
+
+.landing_tittle {
+  text-indent: 25%;
+  font-size: 2.2rem;
+  /*text-shadow: 0 0 20px rgb(24, 44, 230), 0 0 20px rgb(13, 6, 90), 0 0 30px rgb(32, 153, 218), 0 0 30px goldenrod, 0 0 30px goldenrod, 0 0 30px goldenrod;*/
+  word-spacing: 0.1cm;
+  width: 80rem;
+  margin-top: 4rem;
+  padding-left: 3rem;
+  color: #f9f9fa;
+  text-align: left;
+}
+
+.subtitle_landing {
+  text-align: left;
+  /*text-indent: 10%;*/
+  justify-content: center;
+  font-size: large;
+  width: 30rem;
+  padding-left: 3rem;
+  /*margin-left: 15rem;*/
+  margin-top: -0rem;
+  color: rgb(243, 6, 6);
+  vertical-align: text-top;
+}
+
+.pack_landing {
+  max-width: 10%;
+  margin-right: 0%;
+  float: right;
+  vertical-align: top;
+}
+
+.mario_verification {
+  max-width: 5%; /* Cambiar esta propiedad para adaptar al tamaño deseado*/
+  /*width: 10%;*/
+  height: auto;
+  margin-left: 350px;
+  
+}
+
+.landing_button {
+  color: white;
+  border: 10px rgb(139, 60, 60);
+  border-radius: 0.5rem;
+  background-color: goldenrod;
+  cursor: pointer;
+  font: bold 30px "Abadi";
+  font-weight: 900;
+  font-size: 30px;
+  margin-bottom: -150px 1px;
+  margin-right: -700px;
+  width: 85px;
+  text-decoration: none;
+  justify-content: center;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.button_landing:hover {
+  opacity: 1;
 }

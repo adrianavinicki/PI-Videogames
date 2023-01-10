@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 // useEffect para detectar cualquier cambio en la pagina
 import { useDispatch, useSelector } from "react-redux";
 // useDispatch es para enviar la info, y useSelector es para darle al click al form
+import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import Paging from "../Paging/Paging";
+import "./Home2.css";
 import "./Home.css";
 import {
   getAllVideogames,
@@ -16,7 +18,8 @@ import {
   orderByName,
   orderByRating,
 } from "../../Redux/Actions";
-import mariohasahardtime from "../images/mariohasahardtime.gif";
+import Loader from "../Loader/Loader";
+import Navbar from "../Navbar/Navbar";
 
 /*Pagina inicial: deben armar una landing page con
 
@@ -37,6 +40,7 @@ function Home() {
     indexOfFirstVideogame,
     indexOfLastVideogame
   );
+  
 
   const page = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -51,49 +55,102 @@ function Home() {
   }, [dispatch]);
 
   if (!allVideogames.length) {
-    return (
-      <div className="loading">
-        <img src={mariohasahardtime} alt="loading" />
-        <h3>
-          <strong>LOADING . . .</strong>
-        </h3>
-      </div>
-    );
+    return <Loader />;
   }
+
+  function handleClick(e) {
+    e.preventDefault();
+    dispatch(getAllVideogames()); //envia todos los videojuegos
+  }
+
+  function handleSort(e) {
+    e.preventDefault();
+    dispatch(orderByName(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  }
+
+  function handleFilterGenre(e) {
+    e.preventDefault();
+    dispatch(filterGamesByGenre(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  }
+
+  function handleFilterCreated(e) {
+    e.preventDefault();
+    dispatch(filterCreatedIn(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  }
+
+  function handleRating(e) {
+    e.preventDefault();
+    dispatch(orderByRating(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  }
+
   return (
-    <div className="principal">
-      <Paging
-        className="header"
-        allVideogames={allVideogames.length}
-        videogamesPerPage={videogamesPerPage}
-        page={page}
-        currentPage={currentPage}
-      />
-      {currentVideogames.map((video) => (
-        <Card
-          className="cards"
-          id={video.id}
-          name={video.name}
-          description={video.description}
-          released={video.released}
-          rating={video.rating}
-          platforms={
-            video.platforms.length === 0 ? (
-              <div>No Platform Available</div>
-            ) : (
-              video.platforms.map((platform) => platform.name)
-            )
-          }
-          background_image={video.background_image}
-          genre={
-            video.genre.length === 0 ? (
-              <div>No Genre Available</div>
-            ) : (
-              video.genre.map((genre) => genre.name)
-            )
-          }
+    <div>
+      <div className="create_container"></div>
+      <Link className="button_create_videogame" to="/videogameCreate">
+        CREATE VIDEOGAME
+      </Link>
+      <div className="reload_container">
+        <button
+          className="button_reload"
+          onClick={(e) => {
+            handleClick(e);
+          }}
+        >
+          Reload
+        </button>
+      </div>
+      <div>
+        <Navbar
+          handleSort={handleSort}
+          handleRating={handleRating}
+          handleFilterCreated={handleFilterCreated}
+          handleFilterGenre={handleFilterGenre}
         />
-      ))}
+      </div>
+      <ul className="card_grid">
+        {currentVideogames.map((video) => {
+          return (
+            <Card
+              //id={video.id}
+              name={video.name}
+              description={video.description}
+              released={video.released}
+              rating={video.rating}
+              platforms={
+                video.platforms.length === 0 ? (
+                  <div>No Platform Available</div>
+                ) : (
+                  video.platforms.map((el) => el.name)
+                )
+              }
+              background_image={video.background_image}
+              genre={
+                video.genre.length === 0 ? (
+                  <div>No Genre Available</div>
+                ) : (
+                  video.genre.map((genre) => genre.name)
+                )
+              }
+            />
+          );
+        })}
+      </ul>
+      <div className="pagination">
+        <Paging
+          allVideogames={allVideogames.length} //porque necesito la cantidad
+          videogamesPerPage={videogamesPerPage}
+          page={page}
+          currentPage={currentPage}
+        />
+      </div>
     </div>
   );
 }

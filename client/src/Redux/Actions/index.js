@@ -34,7 +34,7 @@ export function getVideogameById(id) {
   if (id) {
     return async function (dispatch) {
       try {
-        let detail = await axios.get(`http://localhost:3001//videogames/${id}`);
+        let detail = await axios.get(`http://localhost:3001/videogames/${id}`);
         dispatch({
           type: "GET_VIDEOGAME_ID",
           payload: detail.data,
@@ -53,7 +53,7 @@ export function getVideogameByName(name) {
   return async function (dispatch) {
     try {
       let response = await axios.get(
-        `http://localhost:3001//videogames/${name}`
+        `http://localhost:3001/videogames/${name}`
       );
       return dispatch({
         type: "GET_VIDEOGAMES_NAME",
@@ -67,11 +67,17 @@ export function getVideogameByName(name) {
 
 export function videogameCreate(payload) {
   return async function (dispatch) {
-    await axios.post("http://localhost:3001/videogame", payload).then((r) => {
-      dispatch({ type: "CREATE_VIDEOGAME", payload: r.data });
-    });
-    //r.status === 200 && alert("Videogame created!"))
-    //.catch((e) => alert("Error on creating Videogame"));
+    try {
+      await axios
+        .post("http://localhost:3001/videogames", payload)
+        .then((r) => {
+          dispatch({ type: "CREATE_VIDEOGAME", payload: r.data });
+        });
+      //r.status === 200 && alert("Videogame created!"))
+      //.catch((e) => alert("Error on creating Videogame"));
+    } catch (error) {
+      alert("Error on creating Videogame");
+    }
   };
 }
 

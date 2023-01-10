@@ -13,7 +13,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         videogames: action.payload,
-        // allVideogames: action.payload, //supuestamente esto hace que los filtros empiecen sobre todos los juegos y no sobre los filtros aplicados
+        allVideogames: action.payload, //supuestamente esto hace que los filtros empiecen sobre todos los juegos y no sobre los filtros aplicados
       };
 
     case "GET_GENRES":
