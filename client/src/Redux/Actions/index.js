@@ -2,9 +2,9 @@ import axios from "axios";
 // Aca declaro las variables donde tengo el action types.
 export const GET_VIDEOGAMES = "GET_VIDEOGAMES"; //hecho a verificar
 export const GET_GENRES = "GET_GENRES"; //hecho a verificar
-export const GET_VIDEOGAME_ID = "GET_VIDEOGAME_ID"; //hecho a verificar
+export const GET_VIDEOGAME_BYID = "GET_VIDEOGAME_BYID"; //hecho a verificar
 export const GET_VIDEOGAMES_NAME = "GET_VIDEOGAMES_NAME"; //hecho a verificar
-export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME"; //hecho a verificar
+export const VIDEOGAME_CREATE = "VIDEOGAME_CREATE"; //hecho a verificar
 export const FILTER_VIDEOGAME_GENRE = "FILTER_VIDEOGAME_GENRE"; //hecho a verificar
 export const FILTER_VIDEOGAME_CREATED_IN = "FILTER_VIDEOGAME_CREATED_IN"; //hecho a verificar
 export const ORDER_BY_NAME = "ORDER_BY_NAME"; //hecho a verificar
@@ -36,7 +36,7 @@ export function getVideogameById(id) {
       try {
         let detail = await axios.get(`http://localhost:3001/videogames/${id}`);
         dispatch({
-          type: "GET_VIDEOGAME_ID",
+          type: "GET_VIDEOGAME_BYID",
           payload: detail.data,
         });
       } catch (error) {
@@ -67,17 +67,21 @@ export function getVideogameByName(name) {
 
 export function videogameCreate(payload) {
   return async function (dispatch) {
-    try {
-      await axios
-        .post("http://localhost:3001/videogames", payload)
-        .then((r) => {
-          dispatch({ type: "CREATE_VIDEOGAME", payload: r.data });
-        });
-      //r.status === 200 && alert("Videogame created!"))
-      //.catch((e) => alert("Error on creating Videogame"));
-    } catch (error) {
-      alert("Error on creating Videogame");
-    }
+    //const json = JSON.stringify(payload);
+    // console.log("esto es json :", json);
+    const response = await axios.post(
+      "http://localhost:3001/videogames",
+      payload
+    );
+    // .then((r) => {
+    //  dispatch({ type: "VIDEOGAME_CREATE", payload: r.data });
+    // });
+    //r.status === 200 && alert("Videogame created!")
+    //.catch((e) => alert("Error on creating Videogame"));
+    // } catch (error) {
+    //   alert("Error on creating Videogame");
+    // }
+    return response;
   };
 }
 

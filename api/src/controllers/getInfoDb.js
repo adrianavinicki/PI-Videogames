@@ -26,7 +26,7 @@ const getInfoDb = async () => {
 
   //agregar entre llaves un genre sobre el videogameDb
 
-  console.log("esto es :", videogameDb);
+  //console.log("esto es :", videogameDb);
   //return videogameDb;
   let dbInfoTotal = videogameDb.map((video) => {
     return {

@@ -23,6 +23,7 @@ async function addVideogame(req, res, next) {
       createdInDb,
       genre,
     } = req.body;
+    console.log("aca esta body :", req.body);
     if (!name || !description || !platforms)
       return res.status(400).send({ message: "information required" });
 

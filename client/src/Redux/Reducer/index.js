@@ -3,7 +3,7 @@ const initialState = {
   allVideogames: [],
   genres: [],
   videogameById: [],
-  // videogamesByName: [],
+  videogamesByName: [],
   videogameCreate: null,
 };
 
@@ -31,13 +31,13 @@ export default function rootReducer(state = initialState, action) {
     case "GET_VIDEOGAMES_NAME":
       return {
         ...state,
-        videogames: action.payload,
+        videogamesByName: action.payload,
       };
 
     case "VIDEOGAME_CREATE":
       return {
         ...state,
-        videogameCreate: action.payload,
+        //videogameCreate: action.payload,
       };
 
     case "RESET": //VER SI CORRESPONDE
@@ -60,7 +60,7 @@ export default function rootReducer(state = initialState, action) {
 
     case "FILTER_VIDEOGAME_CREATED_IN":
       const filterCreatedIn =
-        action.payload === true
+        action.payload === 'Created'
           ? state.allVideogames.filter((el) => el.createdInDb)
           : state.allVideogames.filter((el) => !el.createdInDb);
       return {
