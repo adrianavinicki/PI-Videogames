@@ -13,16 +13,13 @@ async function getGenre(req, res, next) {
       .get(`${API_URLGenres}?key=${API_KEY}`, {
         headers: { "Accept-Encoding": "identity" },
       }) 
-      .then((res) =>
-        res.data.results.map((el) => {
-          return {
-            name: el.name,
-          };
-        })
+     /* .then((res) =>
+        res.data.results.map((el) =>  el.name
+        )
       );
     apiGenre.forEach((el) => {
       Genre.findOrCreate({
-        where: { name: el.name },
+        where: { name: el },
       });
     });
     const genres = await Genre.findAll();
@@ -30,8 +27,23 @@ async function getGenre(req, res, next) {
   } catch (err) {
     next(err);
   }
-}
+}*/
+const infoApiUrl = apiGenre.data.results.map(g => g.name)
+         infoApiUrl.forEach(el => {
+                Genre.findOrCreate({
+                    where: {name: el}
+                })
+            })
 
+  let otraInfo = await Genre.findAll()
+  let utilInfo = otraInfo.map(d => d.name)
+            
+  res.status(200).send(utilInfo)
+}catch(error){
+	res.status(404).send('Genre Not Found')
+}
+        
+}
 module.exports = { getGenre };
 
 /*const axios = require("axios"); // instale axios para hacer las consultas a api, con

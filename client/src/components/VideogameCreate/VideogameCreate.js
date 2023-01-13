@@ -32,6 +32,7 @@ function VideogameCreate() {
     background_image: "",
     genres: [],
   });
+  console.log(genre);
 
   const platformsList = [
     "PC",
@@ -53,7 +54,7 @@ function VideogameCreate() {
       const arr = input[e.target.name];
       setInput({
         ...input,
-        [e.target.name]: arr.concat(e.target.value),
+        [e.target.name]: /*arr.concat*/e.target.value,
       });
     }
     if (e.target.name !== "genres" && e.target.name !== "platforms") {
@@ -223,8 +224,8 @@ function VideogameCreate() {
             onChange={(e) => handleSelectGenre(e)}
           >
             {genre.map((g) => (
-              <option key={g.name} value={g.name}>
-                {g.name}
+              <option key={g} value={g}>
+                {g}
               </option>
             ))}
           </select>

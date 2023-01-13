@@ -2,8 +2,8 @@ const initialState = {
   videogames: [],
   allVideogames: [],
   genres: [],
-  videogameById: [],
-  videogamesByName: [],
+  //videogameById: [],
+  //videogamesByName: [],
   videogameCreate: null,
 };
 
@@ -17,27 +17,31 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case "GET_GENRES":
+     
       return {
         ...state,
+        
         genres: action.payload,
+
       };
+      
 
     case "GET_VIDEOGAME_BYID":
       return {
         ...state,
-        videogameById: action.payload,
+        videogame: action.payload,
       };
 
     case "GET_VIDEOGAMES_NAME":
       return {
         ...state,
-        videogamesByName: action.payload,
+        videogames: action.payload,
       };
 
     case "VIDEOGAME_CREATE":
       return {
         ...state,
-        //videogameCreate: action.payload,
+        videogameCreate: action.json,//action.payload,
       };
 
     case "RESET": //VER SI CORRESPONDE
@@ -47,20 +51,32 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case "FILTER_BYGENRE":
-      const allGames = state.videogames; // en este caso para que el filtro arranque de todos
-      const genresFilter =
+      const allGames = state.allVideogames; // en este caso para que el filtro arranque de todos
+      const genresFilter = allGames.filter((e) => {
+        if (e.genre) {
+          const genres = e.genre;
+          return genres.includes(action.payload);
+        }
+      });
+      return {
+        ...state,
+        videogames: action.payload === "All" ? allGames : genresFilter,
+      };
+
+    /*const genresFilter =
         action.payload === "All"
           ? state.allVideogames
           : allGames.filter((el) => {
-              return el.genres.find((el) => {
-                return el.name === action.payload;
-              });
-            });
-      return { ...state, videogames: genresFilter };
+            /*  return el.genres.find((el) => { //aca retornaria solo el primero
+                return el.name === action.payload;*/
+    //      return el.genres === action.payload;
+    //    });
+
+    // return { ...state, videogames: genresFilter };
 
     case "FILTER_VIDEOGAME_CREATED_IN":
       const filterCreatedIn =
-        action.payload === 'Created'
+        action.payload === "Created"
           ? state.allVideogames.filter((el) => el.createdInDb)
           : state.allVideogames.filter((el) => !el.createdInDb);
       return {

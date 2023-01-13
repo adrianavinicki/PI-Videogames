@@ -34,7 +34,7 @@ export function getVideogameById(id) {
   if (id) {
     return async function (dispatch) {
       try {
-        let detail = await axios.get(`http://localhost:3001/videogames/${id}`);
+        let detail = await axios.get('http://localhost:3001/videogames/:id' + id);
         dispatch({
           type: "GET_VIDEOGAME_BYID",
           payload: detail.data,
@@ -53,8 +53,8 @@ export function getVideogameByName(name) {
   return async function (dispatch) {
     try {
       let response = await axios.get(
-        `http://localhost:3001/videogames/${name}`
-      );
+        "http://localhost:3001/videogames?name=" + name);
+    
       return dispatch({
         type: "GET_VIDEOGAMES_NAME",
         payload: response.data,
@@ -73,6 +73,7 @@ export function videogameCreate(payload) {
       "http://localhost:3001/videogames",
       payload
     );
+    
     // .then((r) => {
     //  dispatch({ type: "VIDEOGAME_CREATE", payload: r.data });
     // });

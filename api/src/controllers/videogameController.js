@@ -43,7 +43,7 @@ async function addVideogame(req, res, next) {
       createdInDb,
     });
     let genreDb = await Genre.findAll({
-      where: { name: genre },
+      where: { name: genre},
     });
     console.log("este es el :", genreDb);
     await videogameCreated.addGenre(genreDb);
