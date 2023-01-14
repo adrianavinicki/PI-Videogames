@@ -2,7 +2,7 @@ const initialState = {
   videogames: [],
   allVideogames: [],
   genres: [],
-  //videogameById: [],
+  videogameById: [],
   //videogamesByName: [],
   videogameCreate: null,
 };
@@ -26,7 +26,7 @@ export default function rootReducer(state = initialState, action) {
     case "GET_VIDEOGAME_BYID":
       return {
         ...state,
-        videogame: action.payload,
+        videogameById: action.payload,
       };
 
     case "GET_VIDEOGAMES_NAME":
@@ -47,7 +47,7 @@ export default function rootReducer(state = initialState, action) {
         videogames: [],
       };
 
-    case "FILTER_BYGENRE":
+    case "FILTER_VIDEOGAME_GENRE":
       const allGames = state.allVideogames; // en este caso para que el filtro arranque de todos
       /*const genresFilter = allGames.filter((e) => {
         if (e.genre) {
@@ -61,7 +61,7 @@ export default function rootReducer(state = initialState, action) {
       };*/
 
       // const allVideogames = state.allVideogames
-      const genresFilter =
+      /* const genresFilter =
         action.payload === "All"
           ? allGames
           : allGames.filter((el) =>
@@ -71,18 +71,16 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         videogames: genresFilter,
-      };
+      };*/
 
-    /*const genresFilter =
+      const genresFilter =
         action.payload === "All"
           ? state.allVideogames
-          : allGames.filter((el) => {
-            /*  return el.genres.find((el) => { //aca retornaria solo el primero
-                return el.name === action.payload;*/
-    //      return el.genres === action.payload;
-    //    });
-
-    // return { ...state, videogames: genresFilter };
+          : allGames.filter((el) => el.genre.includes(action.payload));
+      return {
+        ...state,
+        videogames: genresFilter,
+      };
 
     case "FILTER_VIDEOGAME_CREATED_IN":
       const filterCreatedIn =

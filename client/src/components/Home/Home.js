@@ -42,7 +42,7 @@ function Home() {
   const page = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  //llegue hasta aca
+  
   useEffect(() => {
     dispatch(getAllVideogames());
   }, [dispatch]); // arreglo vacio xque no depende de nada se monta tranquilo
@@ -69,9 +69,17 @@ function Home() {
 
   function handleFilterGenre(e) {
     e.preventDefault();
-    dispatch(filterGamesByGenre(e.target.value));
+    if(e.target.value === 'All') {
+      dispatch(getAllVideogames())
+    }else {
+      dispatch(filterGamesByGenre(e.target.value))
+      setCurrentPage(1)
+    }
+      
+  
+   /* dispatch(filterGamesByGenre(e.target.value));
     setCurrentPage(1);
-    setOrder(e.target.value);
+    setOrder(e.target.value);*/
   }
 
   function handleFilterCreated(e) {

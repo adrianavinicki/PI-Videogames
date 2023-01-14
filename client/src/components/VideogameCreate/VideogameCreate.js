@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { videogameCreate, getGenres } from "../../Redux/Actions/index";
 import "./VideogameCreate.css";
 
@@ -74,12 +74,12 @@ function VideogameCreate() {
     }
   }
 
-  /*function handleSelectPlatforms(e) {
+  function handleSelectPlatforms(e) {
     setInput({
       ...input,
       platforms: [...input.platforms, e.target.value],
     });
-  }*/
+  }
 
   function handleSelectGenre(e) {
     setInput({
@@ -198,18 +198,32 @@ function VideogameCreate() {
         <div className="platforms_container">
           <label className="platforms"> Platforms </label>
           <div>
+          <div className="genres_container">
+          <label className="genres">Platforms </label>
+
+          <select
+            className="genres_input"
+            onChange={(e) => handleSelectPlatforms(e)}
+          >
             {platformsList.map((p) => (
+              <option key={p} value={p}>
+                {p}
+              </option>
+            ))}
+          </select>
+        </div>
+            {/*{platformsList.map((p) => (
               <div key={p}>
                 <input
                   className="platforms_input"
                   type="checkbox"
                   value={p}
                   name="platforms"
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => handleSelectPlatforms(e)}
                 ></input>
                 <label name={p}>{p}</label>
               </div>
-            ))}
+            ))}*/}
           </div>
         </div>
         <div>

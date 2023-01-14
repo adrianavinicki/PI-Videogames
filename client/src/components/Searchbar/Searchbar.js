@@ -34,8 +34,8 @@ export default function SearchBar() {
           <input
             className="search"
             type="text"
-            //autoComplete="off"
-          //  value={name}
+            autoComplete="off"
+            value={name}
             placeholder="Search videogame ..."
             onChange={(e) => handleInputChange(e)}
           />
