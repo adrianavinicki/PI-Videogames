@@ -69,17 +69,9 @@ function Home() {
 
   function handleFilterGenre(e) {
     e.preventDefault();
-    if(e.target.value === 'All') {
-      dispatch(getAllVideogames())
-    }else {
-      dispatch(filterGamesByGenre(e.target.value))
-      setCurrentPage(1)
-    }
-      
-  
-   /* dispatch(filterGamesByGenre(e.target.value));
+    dispatch(filterGamesByGenre(e.target.value));
     setCurrentPage(1);
-    setOrder(e.target.value);*/
+    setOrder(e.target.value);
   }
 
   function handleFilterCreated(e) {
@@ -102,7 +94,7 @@ function Home() {
       <Link className="button_create_videogame" to="/videogameCreate">
         CREATE VIDEOGAME
       </Link>
-      <div className="reload_container">
+      {/*<div className="reload_container">
         <button
           className="button_reload"
           onClick={(e) => {
@@ -111,7 +103,7 @@ function Home() {
         >
           Reload
         </button>
-      </div>
+        </div>*/}
       <div>
         <Navbar
           handleSort={handleSort}
@@ -124,7 +116,7 @@ function Home() {
         {currentVideogames.map((video) => {
           return (
             <Card
-              //id={video.id}
+              id={video.id}
               name={video.name}
               description={video.description}
               released={video.released}

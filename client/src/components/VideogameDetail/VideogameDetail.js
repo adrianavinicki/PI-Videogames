@@ -5,7 +5,7 @@ import { getVideogameById } from "../../Redux/Actions/index";
 import { useEffect } from "react";
 import "./videogameDetail.css";
 
-function VideogameDetail() {
+function VideogameDetail(props) {
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -56,3 +56,4 @@ function VideogameDetail() {
 }
 
 export default VideogameDetail;
+

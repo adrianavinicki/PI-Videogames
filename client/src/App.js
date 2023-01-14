@@ -12,13 +12,9 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/videogameCreate" component={VideogameCreate} />
-          <Route
-            exact
-            path="/videogameDetail/:id"
-            component={VideogameDetail}
-          />
+          <Route path="/home" component={Home} />
+          <Route path="/videogameCreate" component={VideogameCreate} />
+          <Route path="/videogameDetail/:id" component={VideogameDetail} />  
         </Switch>
       </BrowserRouter>
     </div>
