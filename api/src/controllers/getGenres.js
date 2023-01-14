@@ -9,6 +9,10 @@ const { API_KEY, API_URLGenres } = process.env;
 
 async function getGenre(req, res, next) {
   try {
+    let findGenDb = Genre.findAll()
+    if(findGenDb.length > 0){
+      res.status(200).send(findGenDb.map(d=> d.name))
+    }else{
     const apiGenre = await axios
       .get(`${API_URLGenres}?key=${API_KEY}`, {
         headers: { "Accept-Encoding": "identity" },
@@ -37,8 +41,9 @@ const infoApiUrl = apiGenre.data.results.map(g => g.name)
 
   let otraInfo = await Genre.findAll()
   let utilInfo = otraInfo.map(d => d.name)
-            
+   console.log(utilInfo.length)         
   res.status(200).send(utilInfo)
+}
 }catch(error){
 	res.status(404).send('Genre Not Found')
 }

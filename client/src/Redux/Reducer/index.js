@@ -17,14 +17,11 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case "GET_GENRES":
-     
       return {
         ...state,
-        
-        genres: action.payload,
 
+        genres: action.payload,
       };
-      
 
     case "GET_VIDEOGAME_BYID":
       return {
@@ -41,7 +38,7 @@ export default function rootReducer(state = initialState, action) {
     case "VIDEOGAME_CREATE":
       return {
         ...state,
-        videogameCreate: action.json,//action.payload,
+        //videogameCreate: action.json, //action.payload,
       };
 
     case "RESET": //VER SI CORRESPONDE
@@ -52,7 +49,7 @@ export default function rootReducer(state = initialState, action) {
 
     case "FILTER_BYGENRE":
       const allGames = state.allVideogames; // en este caso para que el filtro arranque de todos
-      const genresFilter = allGames.filter((e) => {
+      /*const genresFilter = allGames.filter((e) => {
         if (e.genre) {
           const genres = e.genre;
           return genres.includes(action.payload);
@@ -61,6 +58,19 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         videogames: action.payload === "All" ? allGames : genresFilter,
+      };*/
+
+      // const allVideogames = state.allVideogames
+      const genresFilter =
+        action.payload === "All"
+          ? allGames
+          : allGames.filter((el) =>
+              el.genre?.some((e) => e.includes(action.payload))
+            );
+      console.log(genresFilter);
+      return {
+        ...state,
+        videogames: genresFilter,
       };
 
     /*const genresFilter =

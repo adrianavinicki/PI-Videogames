@@ -21,15 +21,12 @@ import {
 import Loader from "../Loader/Loader";
 import Navbar from "../Navbar/Navbar";
 
-/*Pagina inicial: deben armar una landing page con
 
-[ ] Alguna imagen de fondo representativa al proyecto
-[ ] Botón para ingresar al home (Ruta principal)*/
 
 function Home() {
   const dispatch = useDispatch();
 
-  const allVideogames = useSelector((state) => state.videogames); //trae todo lo que esta en el estado
+  const allVideogames = useSelector((store) => store.videogames); //trae todo lo que esta en el estado
   const [videogamesPerPage, setVideogamesPerPage] = useState(15); //cantidad de videos x pagina
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState(""); //estado local de asc y desc que arranca vacio

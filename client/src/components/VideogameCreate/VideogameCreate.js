@@ -30,7 +30,7 @@ function VideogameCreate() {
     rating: 0,
     platforms: [],
     background_image: "",
-    genres: [],
+    genre: [],
   });
   console.log(genre);
 
@@ -50,11 +50,11 @@ function VideogameCreate() {
   ];
 
   function handleChange(e) {
-    if (e.target.name === "genres" || e.target.name === "platforms") {
+    if (e.target.name === "genre" || e.target.name === "platforms") {
       const arr = input[e.target.name];
       setInput({
         ...input,
-        [e.target.name]: /*arr.concat*/e.target.value,
+        [e.target.name]: arr.concat(e.target.value),
       });
     }
     if (e.target.name !== "genres" && e.target.name !== "platforms") {
@@ -74,10 +74,17 @@ function VideogameCreate() {
     }
   }
 
+  /*function handleSelectPlatforms(e) {
+    setInput({
+      ...input,
+      platforms: [...input.platforms, e.target.value],
+    });
+  }*/
+
   function handleSelectGenre(e) {
     setInput({
       ...input,
-      genres: [...input.genres, e.target.value],
+      genre: [...input.genre, e.target.value],
     });
   }
 
@@ -87,7 +94,7 @@ function VideogameCreate() {
     background_image: input.background_image,
     released: input.released,
     rating: input.rating,
-    genres: input.genres,
+    genre: input.genre,
     platforms: input.platforms,
   };
   console.log("este es el :", obj);
@@ -115,7 +122,7 @@ function VideogameCreate() {
         rating: 0,
         platforms: [],
         background_image: "",
-        genres: [],
+        genre: [],
       });
     } else {
       alert("ERROR: videogame not created ");
@@ -126,9 +133,10 @@ function VideogameCreate() {
   /*function handleDeleteGenre(e) {
     setInput({
       ...input,
-      genres: input.genres.filter((g) => g !== e), //filtro por todo lo que no sea ese elemento
+      genre: input.genre.filter((g) => g !== e), //filtro por todo lo que no sea ese elemento
     });
   }*/
+
   useEffect(() => {
     dispatch(getGenres());
   }, [dispatch]);
@@ -193,7 +201,7 @@ function VideogameCreate() {
             {platformsList.map((p) => (
               <div key={p}>
                 <input
-                  /*className="platforms_input"*/
+                  className="platforms_input"
                   type="checkbox"
                   value={p}
                   name="platforms"
@@ -236,17 +244,17 @@ function VideogameCreate() {
           </button>
         </div>
       </form>
-      {/*{input.genres.map((g) => (
-          <div className="x_genre_container">
-            <label className="x_genre">{g}</label>
-            <button
-              className="x_genre_buttom"
-              onClick={() => handleDeleteGenre(g)}
-            >
-              X
-            </button>
-          </div>
-        )}*/}
+      {/*input.genres.map((g) => (
+        <div className="x_genre_container">
+          <label className="x_genre">{g}</label>
+          <button
+            className="x_genre_buttom"
+            onClick={() => handleDeleteGenre(g)}
+          >
+            X
+          </button>
+        </div>
+      ))*/}
     </div>
   );
 }
