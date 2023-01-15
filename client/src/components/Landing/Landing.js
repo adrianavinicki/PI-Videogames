@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Landing.css";
-import pac_man from "../images/pac_man.png";
-import mario_verification from  "../images/mario_verification.gif";
-import izqlanding from "../images/izqlanding.jpeg";
+//import "./Landing.css";
+//import pac_man from "../images/pac_man.png";
+//import mario_verification from  "../images/mario_verification.gif";
+//import izqlanding from "../images/izqlanding.jpeg";
+import './Landing2.css';
+
 
 /*Pagina inicial: deben armar una landing page con
 
@@ -11,29 +13,28 @@ import izqlanding from "../images/izqlanding.jpeg";
 [ ] Botón para ingresar al home (Ruta principal)*/
 
 function Landing() {
-
-  
   return (
-    <div className="landing_page">
-      <div>
-      <img className="pack_landing" src={pac_man} alt="soy packman"/>
-        <h1 className="landing_tittle">
-          WELCOME!!! TO A NEW EXPERIENCE!
+    <section className="container">
+      <div className="landing_page">
+        <div className="container_dos">
+          <h1 className="landing_tittle">
+          LIVE A NEW EXPERIENCE!!!
         </h1>
+        {/*<img className="pack_landing" src={pac_man} alt="soy packman"/>
         <div className="subtitle_landing">
-          <h3>You will be able to search for videogames or create new
-          ones!!!
-        </h3>
+          <h3>Search and Create Videogames!!!</h3>
         </div>
         <div>
           <img src={izqlanding} alt="soy imagen"/>
         <h2 >LET´S GO...</h2>
         </div>
-        </div>
-        <Link to="/home">
-          <button className="landing_button">Start</button>
+        <div>*/}
+        <Link to="/home" className='link'>LET´S GO!
+         {/* <button className="landing_button">Start</button>*/}
         </Link>
+        </div>
       </div>
+    </section>
   );
 }
 

@@ -1,19 +1,19 @@
 body {
-  background: rgb(1, 33, 7);
+  background: rgba(0, 0, 0, 0.866);
 }
 
 .card_grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 270px);
   gap: 40px;
-  padding: 40px;
+  padding: 10px;
   justify-content: center;
-  transition: margin-left 0.3s 0.1s;
+  transition: margin-left 0.1s 0.1s;
 }
 
 .create_container {
-  margin-top: 3rem;
-  margin-left: 1rem;
+  margin-top: 2rem;
+  margin-left: 0rem;
   justify-content: center;
 }
 
@@ -24,6 +24,7 @@ body {
 }
 .reload_container {
   margin-left: 1rem;
+  padding: 10px 22px;
 }
 
 .button_reload {
@@ -31,16 +32,15 @@ body {
   color: goldenrod;
   justify-content: center;
   margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 0.7rem;
   cursor: pointer;
   border-radius: 0.2rem;
   outline: none;
   border: none;
+  padding: 6px 12px;
 }
 
-/*.pagination {
-    margin-bottom: 2rem;
-    cursor: pointer;
-}*/
 
 /* paginado */
 

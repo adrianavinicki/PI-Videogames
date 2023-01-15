@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import Paging from "../Paging/Paging";
 import "./Home2.css";
-import "./Home.css";
 import {
   getAllVideogames,
   getGenres,
@@ -20,8 +19,6 @@ import {
 } from "../../Redux/Actions";
 import Loader from "../Loader/Loader";
 import Navbar from "../Navbar/Navbar";
-
-
 
 function Home() {
   const dispatch = useDispatch();
@@ -37,12 +34,11 @@ function Home() {
     indexOfFirstVideogame,
     indexOfLastVideogame
   );
-  
 
   const page = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  
+
   useEffect(() => {
     dispatch(getAllVideogames());
   }, [dispatch]); // arreglo vacio xque no depende de nada se monta tranquilo
@@ -90,20 +86,21 @@ function Home() {
 
   return (
     <div>
-      <div className="create_container"></div>
-      <Link className="button_create_videogame" to="/videogameCreate">
-        CREATE VIDEOGAME
-      </Link>
-      {/*<div className="reload_container">
-        <button
-          className="button_reload"
-          onClick={(e) => {
-            handleClick(e);
-          }}
-        >
-          Reload
-        </button>
-        </div>*/}
+      <div className="create_container">
+        <Link className="button_create_videogame" to="/videogameCreate">
+          CREATE VIDEOGAME
+        </Link>
+        <div className="reload_container">
+          <button
+            className="button_reload"
+            onClick={(e) => {
+              handleClick(e);
+            }}
+          >
+            Reload
+          </button>
+        </div>
+      </div>
       <div>
         <Navbar
           handleSort={handleSort}

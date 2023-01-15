@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link} from "react-router-dom";
 import { videogameCreate, getGenres } from "../../Redux/Actions/index";
 import "./VideogameCreate.css";
+import './VideogameCreate2.css';
 
 function validation(input) {
   let errors = {};
@@ -142,16 +143,18 @@ function VideogameCreate() {
   }, [dispatch]);
 
   return (
-    <div className="home_container">
+    <div className="containerForm">
       <Link className="home" to="/home">
         HOME
       </Link>
-      <h1 className="lets_go">Create your Videogame</h1>
-      <form className="form" onSubmit={(e) => handleSubmit(e)}>
+      <div>
+      <h1 className="tittle">Create your Videogame</h1>
+      </div>
+      <div clasName='boxgrid'>
+      <form className="formCreate" onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <label>Name</label>
-          <input
-            className="input"
+         <input
+            className="inputsss"
             placeholder="Videogame name"
             type="text"
             value={input.name}
@@ -159,11 +162,8 @@ function VideogameCreate() {
             onChange={(e) => handleChange(e)}
           />
           {errors.name && <p className="error">{errors.name}</p>}
-        </div>
-        <div>
-          <label>Description</label>
-          <input
-            className="input"
+        <input
+            className="inputsss"
             placeholder="Description"
             type="text"
             value={input.description}
@@ -171,18 +171,17 @@ function VideogameCreate() {
             onChange={(e) => handleChange(e)}
           />
           {errors.description && <p className="error">{errors.description}</p>}
-        </div>
+        </div>{/*ojo aca*/}
         <div className="released_container">
-          <label className="released"> Released </label>
           <input
-            className="released_input"
+            className="inputsss"
             type="date"
             value={input.released}
             name="released"
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <div>
+       
           <label className="rating">Rating </label>
           <input
             className="rating_input"
@@ -194,7 +193,7 @@ function VideogameCreate() {
             name="rating"
             onChange={(e) => handleChange(e)}
           />
-        </div>
+        
         <div className="platforms_container">
           <label className="platforms"> Platforms </label>
           <div>
@@ -226,10 +225,8 @@ function VideogameCreate() {
             ))}*/}
           </div>
         </div>
-        <div>
-          <label>Image</label>
           <input
-            className="input"
+            className="inputsss"
             placeholder="Image"
             type="text"
             value={input.background_image}
@@ -237,7 +234,6 @@ function VideogameCreate() {
             alt="not found"
             onChange={(e) => handleChange(e)}
           />
-        </div>
         <div className="genres_container">
           <label className="genres">Genres </label>
 
@@ -269,6 +265,7 @@ function VideogameCreate() {
           </button>
         </div>
       ))*/}
+    </div>
     </div>
   );
 }

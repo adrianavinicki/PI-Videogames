@@ -15,7 +15,7 @@ export default function Navbar({
   return (
     <div>
       <Link to="/">
-        <button className="button">Back</button>
+        <button className="button2">Back</button>
       </Link>
 
       <div>

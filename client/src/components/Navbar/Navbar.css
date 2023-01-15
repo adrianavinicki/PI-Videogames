@@ -14,13 +14,13 @@
     height: 1.5rem;
     width: 8rem;
     font-size: 17px;
-    border-color: rgb(139, 60, 60);
+    border-color: rgb(48, 12, 12);
     border-top: none;
     border-left: none;
     border-right: none;
-    background-color: rgb(139, 60, 60);
+    background-color: rgba(3, 53, 62, 0.823);
     border-radius: 0.3rem;
-    color: rgb(7, 202, 7);
+    color: rgb(238, 244, 238);
     
 }
 .select:hover{
@@ -40,4 +40,18 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+
+.button2{
+  text-decoration: none;
+  color: rgb(184, 138, 23);
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  outline: none;
+  border: none;
+  padding: 6px 22px;
 }

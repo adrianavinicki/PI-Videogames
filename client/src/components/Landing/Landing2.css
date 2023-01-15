@@ -1,0 +1,52 @@
+.container{
+    background-image: url('../images/wallpaper_the_lord_of_the_rings_war_in_the_north_04_1920x1080.jpg');
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: table;
+    margin: 0;
+    top: 0; 
+}
+
+.landing_page {
+    width: 100%;
+    vertical-align: bottom;
+    display: table-cell;
+}
+
+.container_dos {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+
+.landing_title{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 70px;
+    letter-spacing: 7px;
+    color: #172A31;
+    text-shadow: 0 0 500px white;
+    text-shadow: 3px 3px black;
+}
+
+.link {
+    position: relative;
+    display: inline-block;
+    padding: 40px 10px;
+    letter-spacing: 5px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 35px;
+    color: #eae5de;
+    text-decoration: none;
+    overflow: hidden;
+    transition: 0.2s;
+    text-shadow: 3px 3px black;
+}
+
+.link:hover {
+    background: #3f9393d0;
+    box-shadow: 0 0 10px #adade5d0, 0 0 40px #3b4087d0, 0 0 80px #4996a4d0;
+    border-radius: 10px;
+}
