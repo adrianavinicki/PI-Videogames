@@ -45,7 +45,7 @@ body {
     color: red;
 }
 
-.released_container {
+/*.released_container {
     margin-left: 1rem;
     justify-content: center;
     
@@ -53,7 +53,7 @@ body {
 .released {
     margin-left: -1rem;
     
-}
+}*/
 
 .released_input {
     width: 8rem;

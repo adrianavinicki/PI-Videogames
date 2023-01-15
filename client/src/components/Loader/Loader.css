@@ -1,26 +1,26 @@
 /* loading */
 
 .loading {
-    position: absolute;
-    width: 1007px;
-    height: 243px;
-    left: 216px;
-    top: 396px; 
-  }
-
-.button{
-    background-color: #08074d; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 5px;
+  position: sticky;
+  width: 1007px;
+  height: 243px;
+  left: 216px;
+  top: 100px;
 }
 
-.button2{
+.button {
+  background-color: #08074d;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.button2 {
   text-decoration: none;
   color: goldenrod;
   justify-content: center;

@@ -24,20 +24,21 @@
 
 .landing_title{
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 70px;
-    letter-spacing: 7px;
-    color: #172A31;
+    font-size: 40px;
+    letter-spacing: 2px;
+    color: #eae5de;;
     text-shadow: 0 0 500px white;
     text-shadow: 3px 3px black;
+    padding: 40px 10px;
 }
 
 .link {
     position: relative;
     display: inline-block;
     padding: 40px 10px;
-    letter-spacing: 5px;
+    letter-spacing: 1px;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 35px;
+    font-size: 40px;
     color: #eae5de;
     text-decoration: none;
     overflow: hidden;

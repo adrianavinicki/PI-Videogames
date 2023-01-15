@@ -17,7 +17,7 @@ function Landing() {
     <section className="container">
       <div className="landing_page">
         <div className="container_dos">
-          <h1 className="landing_tittle">
+          <h1 className="landing_title">
           LIVE A NEW EXPERIENCE!!!
         </h1>
         {/*<img className="pack_landing" src={pac_man} alt="soy packman"/>

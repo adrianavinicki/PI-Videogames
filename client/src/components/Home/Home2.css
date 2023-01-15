@@ -1,18 +1,19 @@
 body {
-  background: rgba(0, 0, 0, 0.866);
+  background: rgba(110, 110, 111, 0.866);
+  
 }
 
 .card_grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 270px);
   gap: 40px;
-  padding: 10px;
+  padding: 1px;
   justify-content: center;
-  transition: margin-left 0.1s 0.1s;
+  transition: margin-left 0.0s 0.0Ss;
 }
 
 .create_container {
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-left: 0rem;
   justify-content: center;
 }
@@ -38,14 +39,14 @@ body {
   border-radius: 0.2rem;
   outline: none;
   border: none;
-  padding: 6px 12px;
+  padding: 3px 6px;
 }
 
 
 /* paginado */
 
 .pagination {
-  margin-bottom: 2rem;
+  margin-bottom: 0,5rem;
   cursor: pointer;
   position: absolute;
   width: 243px;

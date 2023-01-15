@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link} from "react-router-dom";
 import { videogameCreate, getGenres } from "../../Redux/Actions/index";
-import "./VideogameCreate.css";
+//import "./VideogameCreate.css";
 import './VideogameCreate2.css';
 
 function validation(input) {
@@ -173,6 +173,7 @@ function VideogameCreate() {
           {errors.description && <p className="error">{errors.description}</p>}
         </div>{/*ojo aca*/}
         <div className="released_container">
+        <label className="released">Released </label>
           <input
             className="inputsss"
             type="date"
@@ -182,10 +183,9 @@ function VideogameCreate() {
           />
         </div>
        
-          <label className="rating">Rating </label>
+          <label className="rating">Rating: 0 to 5</label>
           <input
-            className="rating_input"
-            placeholder="0 to 5"
+            className="input"
             type="decimal"
             value={input.rating}
             min={0}
@@ -195,13 +195,9 @@ function VideogameCreate() {
           />
         
         <div className="platforms_container">
-          <label className="platforms"> Platforms </label>
-          <div>
-          <div className="genres_container">
-          <label className="genres">Platforms </label>
-
+          <label className="rating"> Platforms </label>
           <select
-            className="genres_input"
+            className="inputss"
             onChange={(e) => handleSelectPlatforms(e)}
           >
             {platformsList.map((p) => (
@@ -223,8 +219,8 @@ function VideogameCreate() {
                 <label name={p}>{p}</label>
               </div>
             ))}*/}
-          </div>
-        </div>
+        
+        
           <input
             className="inputsss"
             placeholder="Image"
@@ -235,10 +231,10 @@ function VideogameCreate() {
             onChange={(e) => handleChange(e)}
           />
         <div className="genres_container">
-          <label className="genres">Genres </label>
+          <label className="rating">Genres </label>
 
           <select
-            className="genres_input"
+            className="inputss"
             onChange={(e) => handleSelectGenre(e)}
           >
             {genre.map((g) => (
@@ -249,7 +245,7 @@ function VideogameCreate() {
           </select>
         </div>
         <div>
-          <button className="create" type="submit">
+          <button className="buttonCrear" type="submit">
             CREATE
           </button>
         </div>
