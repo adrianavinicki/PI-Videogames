@@ -27,6 +27,13 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         videogameById: action.payload,
+
+      };
+
+    case "CLEAN_DETAIL":
+      return {
+        ...state,
+        videogameById: [],
       };
 
     case "GET_VIDEOGAMES_NAME":

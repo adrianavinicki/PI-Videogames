@@ -84,6 +84,7 @@ function Home() {
     setOrder(e.target.value);
   }
 
+  
   return (
     <div>
       <div className="create_container">
@@ -110,10 +111,15 @@ function Home() {
         />
       </div>
       <ul className="card_grid">
-        {currentVideogames.map((video) => {
+        {
+        currentVideogames.map((video) => {
+          console.log(video.id)
           return (
+           
+            <Link to={`/videogames/${video.id}`} >
             <Card
               id={video.id}
+              key={video.id}
               name={video.name}
               description={video.description}
               released={video.released}
@@ -134,6 +140,7 @@ function Home() {
                 )
               }
             />
+           </Link>
           );
         })}
       </ul>

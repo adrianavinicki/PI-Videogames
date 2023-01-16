@@ -1,58 +1,57 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideogameById } from "../../Redux/Actions/index";
+import { getVideogameById, cleanDetail } from "../../Redux/Actions/index";
 import { useEffect } from "react";
 import "./videogameDetail.css";
 
-function VideogameDetail(props) {
+function VideogameDetail(id) {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const detail = useSelector(state => state.videogameById)
+  console.log(detail)
 
   useEffect(() => {
     dispatch(getVideogameById(id));
-  }, [id, dispatch]);
+  },[id, dispatch]);
 
-  const detail = useSelector((state) => state.videogameById);
+  useEffect(() => {
+    return function () {
+      dispatch(cleanDetail());
+    } 
+  },[dispatch]);
 
-  function handleReset() {
-    dispatch(getVideogameById());
-  }
   return (
-    <div>
-      <div className="button_container_detail">
-        <Link to={"/home"} onClick={handleReset}>
-          <button className="button_detail">HOME</button>
-        </Link>
-        <div className="title_container_detail">
-          <h1 className="title_detail">Title: {detail.name}</h1>
-          <img
-            className="image_detail"
-            src={
-              detail.background_image
-                ? detail.background_image
-                : detail.background_image
+    <div className="contPri">
+            {
+                detail && detail.name ?
+                <div>
+                    <button className="buttonBack"><Link className="linkBack" to='/home'>Home</Link></button>
+                    <div className="conTotal">
+                        <div className="imgDesc">
+                            <h1>{detail.name}</h1>
+                            <p><h2>Description:</h2> {detail.description.replace(/<p>/g, "")}</p>
+                        </div>
+                        <div className="infoGame">
+                            <img src={detail.background_image} alt="logoimg" />
+                            <div className="infoRest">
+                                <h3>Platforms: {detail.platforms.length > 0 ? detail.platforms + ' ': detail.platforms.map(e => e)}</h3>
+                                <br />
+                                <h3>Genres: {detail.genre.length > 0 ? detail.genre + ' ': detail.genre.map(e => e)}</h3>
+                                <br />
+                                <h4>Rating: {detail.rating}</h4>
+                                <br />
+                                <h4>Released: {detail.released}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div> : (
+                    <div className="loadkra">
+                        <img src="../images/izqlanding.jpeg" alt="logoload" />
+                    </div>
+                )
             }
-            alt="not found"
-          />
-          <p className="released_detail">Released: {detail.released}</p>
-          <p className="platforms_detail">
-            Platforms:
-            {detail.id?.length > 7
-              ? detail.platforms?.map((p) => p.name).join(" - ")
-              : detail.platforms?.map((p) => p.platform.name).join(" - ")}
-          </p>
-          <p className="genres_detail">
-            Genres: {detail.genre?.map((g) => g.name).join("-")}
-          </p>
-          <p className="rating_detail">Rating: {detail.rating}</p>
-          <p className="description_detail">
-            Description: {detail.description || detail.description_raw}
-          </p>
         </div>
-      </div>
-    </div>
-  );
+    )
 }
 
 export default VideogameDetail;

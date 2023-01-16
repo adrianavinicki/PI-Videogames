@@ -131,12 +131,12 @@ function VideogameCreate() {
     }
   }
 
-  /*function handleDeleteGenre(e) {
+  function handleDeleteGenre(e) {
     setInput({
       ...input,
       genre: input.genre.filter((g) => g !== e), //filtro por todo lo que no sea ese elemento
     });
-  }*/
+  }
 
   useEffect(() => {
     dispatch(getGenres());
@@ -250,17 +250,17 @@ function VideogameCreate() {
           </button>
         </div>
       </form>
-      {/*input.genres.map((g) => (
+      {input.genre.map((g) => (
         <div className="x_genre_container">
-          <label className="x_genre">{g}</label>
+          <label className="genreX">{g}</label>
           <button
-            className="x_genre_buttom"
+            className="butonX"
             onClick={() => handleDeleteGenre(g)}
           >
             X
           </button>
         </div>
-      ))*/}
+      ))}
     </div>
     </div>
   );

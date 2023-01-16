@@ -10,9 +10,9 @@ module.exports = (sequelize) => {
       allowNull: false, //no permite que falte el dato
       primaryKey: true, // sirve para considerar el campo de busqueda
     },
-    idApi:{
-      type: DataTypes.STRING,
-    },
+    // idApi:{
+     //type: DataTypes.STRING,
+    //},
     name: {
       type: DataTypes.STRING,
       allowNull: false,

@@ -7,7 +7,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, 270px);
   gap: 40px;
-  padding: 1px;
+  padding: 40px;
   justify-content: center;
   transition: margin-left 0.0s 0.0Ss;
 }
@@ -46,7 +46,7 @@ body {
 /* paginado */
 
 .pagination {
-  margin-bottom: 0,5rem;
+  margin-bottom: 0rem;
   cursor: pointer;
   position: absolute;
   width: 243px;

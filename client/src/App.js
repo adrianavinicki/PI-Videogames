@@ -5,6 +5,7 @@ import Landing from "./Components/Landing/Landing";
 import VideogameCreate from "./Components/VideogameCreate/VideogameCreate";
 import Home from "./Components/Home/Home";
 import VideogameDetail from "./Components/VideogameDetail/VideogameDetail";
+import Card from "./Components/Card/Card";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Route path="/home" component={Home} />
           <Route path="/videogameCreate" component={VideogameCreate} />
-          <Route path="/videogameDetail/:id" component={VideogameDetail} />  
+          <Route exact path="/videogames/:id" render={({ match }) => < VideogameDetail id={match.params.id} />} />
         </Switch>
       </BrowserRouter>
     </div>

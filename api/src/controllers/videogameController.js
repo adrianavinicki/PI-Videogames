@@ -2,9 +2,9 @@ const axios = require("axios"); // instale axios para hacer las consultas a api,
 require("dotenv").config(); //primeromejor traer el axios
 const { API_KEY, API_URL } = process.env;
 const { Videogame, Genre } = require("../db"); // es necesario traer los modelos directos de su carpeta o con traerlos de la db ya estaria?
-const { v4: uuidv4 } = require("uuid");
-const { getIdAll } = require("./getIdAll");
-
+//const { v4: uuidv4 } = require("uuid");
+//const { getIdAll } = require("./getIdAll");
+const { getIdDetail} = require("./getIdDetail");
 const { getAllVideogames } = require("./getAllVideogames");
 /*__POST /videogames__:
   - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
@@ -86,10 +86,10 @@ async function getVideogames(req, res, next) {
 }
 
 async function getById(req, res, next) {
-  const idDetail = req.params.id;
+  const { id } = req.params;
   try {
-    let video = await getIdAll(idDetail);
-    res.status(200).json(video);
+    let video = await getIdDetail(id);
+    res.status(200).send(video);
   } catch (err) {
     next(err);
   }

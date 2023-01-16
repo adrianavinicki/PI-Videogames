@@ -34,7 +34,7 @@ IMPORTANTE: Dentro de la Ruta Principal se deben mostrar tanto los videjuegos tr
     };
     let apiInfoTotal = apiInfo.map((video) => {
       return {
-        idApi: video.id,
+        id: video.id,
         name: video.name,
         slug: video.slug,
         description: "to be complete",

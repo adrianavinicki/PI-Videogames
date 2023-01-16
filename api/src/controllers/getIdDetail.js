@@ -41,12 +41,14 @@ const getIdDetail = async (idDetail) => {
           },
         };
     } else {
-      let idDet = Number(idDetail); //se convierte el id en numero por si ingresa como string
+       let idDet = Number(idDetail); //se convierte el id en numero por si ingresa como string
       if (Number.isInteger(idDet)) {
         var gameId = await axios.get(`${API_URL}/${idDetail}?key=${API_KEY}`, {
           headers: { "Accept-Encoding": "identity" },
         });
+        console.log(gameId)
         return {
+          id: gameId.data.id,
           name: gameId.data.name,
           description: gameId.data.description,
           released: gameId.data.released,
@@ -55,12 +57,13 @@ const getIdDetail = async (idDetail) => {
           background_image: gameId.data.background_image,
           genre: gameId.data.genres.map((el) => el.name),
         };
+       // res.status(200).send(games)
       }
       return " El Id ingresado no existe ";
-    }
+   }
   }
   return "no existe";
-};
+}
 
 module.exports = { getIdDetail };
 
