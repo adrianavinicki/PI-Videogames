@@ -7,9 +7,11 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, 270px);
   gap: 40px;
-  padding: 40px;
+  padding: 15px;
   justify-content: center;
-  transition: margin-left 0.0s 0.0Ss;
+  transition: margin-left 0.3s 0.3s;
+  font-family: sans-serif;
+  font-size: small;
 }
 
 .create_container {

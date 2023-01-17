@@ -50,11 +50,12 @@ export function getVideogameById(id) {
   };
 }
 
-/*export function clearDetails(){
+export function clearDetails(){
   return {
       type: 'CLEAR_DETAILS' 
   }
-}*/
+}
+
 export function cleanDetail(){
   return{
       type: 'CLEAN_DETAIL'

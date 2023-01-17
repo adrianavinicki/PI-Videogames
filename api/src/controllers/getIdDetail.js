@@ -3,7 +3,7 @@ const { INTEGER } = require("sequelize");
 require("dotenv").config(); //primeromejor traer el axios
 const { API_KEY, API_URL } = process.env;
 const { getAllVideogames } = require("./getAllVideogames");
-const { Videogame, Genre } = require('../db');
+const { Videogame, Genre } = require("../db");
 
 /*[ ] GET /videogame/{idVideogame}:
 Obtener el detalle de un videojuego en particular
@@ -31,22 +31,33 @@ const getIdDetail = async (idDetail) => {
       if (!game) return console.log("not found");
       else
         return {
-          game,
-          include: {
+          //game,
+          id: game.id,
+          name: game.name,
+          slug: game.slug,
+          description: game.description,
+          released: game.released,
+          rating: game.rating,
+          platforms: game.platforms,
+          background_image: game.background_image,
+          // genre: game.genres.map((el) => el.name),
+          createdInDb: game.createdInD,
+
+          /*include: {
             model: Genre,
             attributes: ["name"], //aca va lo unico que quiero igualmentente no hay mas
             through: {
               attributes: [],
             },
-          },
+          },*/
         };
     } else {
-       let idDet = Number(idDetail); //se convierte el id en numero por si ingresa como string
+      let idDet = Number(idDetail); //se convierte el id en numero por si ingresa como string
       if (Number.isInteger(idDet)) {
         var gameId = await axios.get(`${API_URL}/${idDetail}?key=${API_KEY}`, {
           headers: { "Accept-Encoding": "identity" },
         });
-        console.log(gameId)
+        console.log(gameId);
         return {
           id: gameId.data.id,
           name: gameId.data.name,
@@ -57,13 +68,13 @@ const getIdDetail = async (idDetail) => {
           background_image: gameId.data.background_image,
           genre: gameId.data.genres.map((el) => el.name),
         };
-       // res.status(200).send(games)
+        // res.status(200).send(games)
       }
       return " El Id ingresado no existe ";
-   }
+    }
   }
   return "no existe";
-}
+};
 
 module.exports = { getIdDetail };
 

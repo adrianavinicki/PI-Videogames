@@ -109,7 +109,7 @@ function Home() {
           handleFilterCreated={handleFilterCreated}
           handleFilterGenre={handleFilterGenre}
         />
-      </div>
+      </div >
       <ul className="card_grid">
         {
         currentVideogames.map((video) => {
@@ -117,7 +117,8 @@ function Home() {
           return (
            
             <Link to={`/videogames/${video.id}`} >
-            <Card
+            <div >
+            <Card 
               id={video.id}
               key={video.id}
               name={video.name}
@@ -140,6 +141,7 @@ function Home() {
                 )
               }
             />
+            </div>
            </Link>
           );
         })}

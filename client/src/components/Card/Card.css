@@ -4,12 +4,15 @@
     border-color: bisque;
     margin: 1rem;
     width: 17rem;
+    height: 20rem;
     padding: 1rem;
   }
   
   .card-img{
-    width: 100%;
+    width: 280px;
+    height: 180px;
     border-radius: 1rem;
+    position: static;
   }
   
 .card:hover {
