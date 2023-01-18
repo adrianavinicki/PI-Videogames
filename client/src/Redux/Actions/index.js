@@ -81,13 +81,13 @@ export function getVideogameByName(name) {
 }
 
 export function videogameCreate(payload) {
-  return async function (dispatch) {
+  return async function () {
     //const json = JSON.stringify(payload);
     // console.log("esto es json :", json);
     const response = await axios.post(
       "http://localhost:3001/videogames",
       payload
-    );
+    )
     
     // .then((r) => {
     //  dispatch({ type: "VIDEOGAME_CREATE", payload: r.data });

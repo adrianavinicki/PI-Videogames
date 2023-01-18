@@ -45,6 +45,7 @@ export default function rootReducer(state = initialState, action) {
     case "VIDEOGAME_CREATE":
       return {
         ...state,
+        videogames: action.payload
         //videogameCreate: action.json, //action.payload,
       };
 

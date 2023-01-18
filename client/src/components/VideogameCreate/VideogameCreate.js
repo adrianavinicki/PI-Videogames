@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link} from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { videogameCreate, getGenres } from "../../Redux/Actions/index";
-//import "./VideogameCreate.css";
-import './VideogameCreate2.css';
+import "./VideogameCreate2.css";
 
 function validation(input) {
   let errors = {};
-  if (!input.name.trim()) {
+  if (!input.name) {
     //trim elimina espacios en blanco que dejen cuando escriben
     errors.name = "Please write a name!";
   }
-  if (!input.description.trim()) {
+  if (!input.description) {
     errors.description = "Please write a description!";
+  }
+  if (!input.released) {
+    errors.released = "Game must have a released date";
   }
   if (!input.platforms.length) {
     errors.platforms = "Please write a platform!";
@@ -22,8 +24,13 @@ function validation(input) {
 
 function VideogameCreate() {
   const dispatch = useDispatch();
-  const genre = useSelector((store) => store.genres);
-  const [errors, setErrors] = useState({});
+  const history = useHistory();
+  const genre = useSelector((state) => state.genres);
+
+  useEffect(() => {
+    dispatch(getGenres());
+  }, [dispatch]);
+
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -34,6 +41,8 @@ function VideogameCreate() {
     genre: [],
   });
   console.log(genre);
+
+  const [errors, setErrors] = useState({});
 
   const platformsList = [
     "PC",
@@ -57,15 +66,18 @@ function VideogameCreate() {
         ...input,
         [e.target.name]: arr.concat(e.target.value),
       });
-    }
-    if (e.target.name !== "genres" && e.target.name !== "platforms") {
+      setErrors(
+        validation({
+          ...input,
+          [e.target.name]: e.target.value,
+        })
+      );
+    } else {
       setInput({
         ...input,
         [e.target.name]: e.target.value,
       });
-    } else {
-      // name es cada casillero que debe llenar
-      // el value son los inputs de arriba que van a ir cambiando a medida que se ingresa la info
+
       setErrors(
         validation({
           ...input,
@@ -74,22 +86,28 @@ function VideogameCreate() {
       );
     }
   }
+  // name es cada casillero que debe llenar
+  // el value son los inputs de arriba que van a ir cambiando a medida que se ingresa la info
 
   function handleSelectPlatforms(e) {
-    setInput({
-      ...input,
-      platforms: [...input.platforms, e.target.value],
-    });
+    if (!input.platforms.includes(e.target.value)) {
+      setInput({
+        ...input,
+        platforms: [...input.platforms, e.target.value],
+      });
+    }
   }
 
   function handleSelectGenre(e) {
-    setInput({
-      ...input,
-      genre: [...input.genre, e.target.value],
-    });
+    if (!input.genre.includes(e.target.value)) {
+      setInput({
+        ...input,
+        genre: [...input.genre, e.target.value],
+      });
+    }
   }
 
-  const obj = {
+  /*const obj = {
     name: input.name,
     description: input.description,
     background_image: input.background_image,
@@ -98,23 +116,18 @@ function VideogameCreate() {
     genre: input.genre,
     platforms: input.platforms,
   };
-  console.log("este es el :", obj);
+  console.log("este es el :", obj);*/
 
   function handleSubmit(e) {
     e.preventDefault();
+    setErrors(validation(input));
+    const errorSubmit = validation(input);
 
-    setErrors(
-      validation({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
-
-    if (Object.keys(errors).length === 0) {
-      dispatch(videogameCreate(obj));
+    if (Object.values(errorSubmit).length !== 0 || !input.genre.length) {
+      alert("Wrong information");
+    } else {
+      dispatch(videogameCreate(input));
       alert("Videogame created 👌");
-      //e.target.reset();
-
       setInput({
         //seteo todo mi input en cero
         name: "",
@@ -125,22 +138,17 @@ function VideogameCreate() {
         background_image: "",
         genre: [],
       });
-    } else {
-      alert("ERROR: videogame not created ");
-      return;
+      history.push("/home");
     }
   }
 
   function handleDeleteGenre(e) {
+    e.preventDefault();
     setInput({
       ...input,
-      genre: input.genre.filter((g) => g !== e), //filtro por todo lo que no sea ese elemento
+      genre: input.genre.filter((g) => g !== e.target.value), //filtro por todo lo que no sea ese elemento
     });
   }
-
-  useEffect(() => {
-    dispatch(getGenres());
-  }, [dispatch]);
 
   return (
     <div className="containerForm">
@@ -148,41 +156,44 @@ function VideogameCreate() {
         HOME
       </Link>
       <div>
-      <h1 className="tittle">Create your Videogame</h1>
+        <h1 className="tittle">Create your Videogame</h1>
       </div>
-      <div clasName='boxgrid'>
-      <form className="formCreate" onSubmit={(e) => handleSubmit(e)}>
-        <div>
-         <input
-            className="inputsss"
-            placeholder="Videogame name"
-            type="text"
-            value={input.name}
-            name="name"
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.name && <p className="error">{errors.name}</p>}
-        <input
-            className="inputsss"
-            placeholder="Description"
-            type="text"
-            value={input.description}
-            name="description"
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.description && <p className="error">{errors.description}</p>}
-        </div>{/*ojo aca*/}
-        <div className="released_container">
-        <label className="released">Released </label>
-          <input
-            className="inputsss"
-            type="date"
-            value={input.released}
-            name="released"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-       
+      <div clasName="boxgrid">
+        <form className="formCreate" onSubmit={(e) => handleSubmit(e)}>
+          <div>
+            <input
+              className="inputsss"
+              placeholder="Videogame name"
+              type="text"
+              value={input.name}
+              name="name"
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.name && <p className="error">{errors.name}</p>}
+            <input
+              className="inputsss"
+              placeholder="Description"
+              type="text"
+              value={input.description}
+              name="description"
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.description && (
+              <p className="error">{errors.description}</p>
+            )}
+          </div>
+          {/*ojo aca*/}
+          <div className="released_container">
+            <label className="released">Released </label>
+            <input
+              className="inputsss"
+              type="date"
+              value={input.released}
+              name="released"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+
           <label className="rating">Rating: 0 to 5</label>
           <input
             className="input"
@@ -193,34 +204,21 @@ function VideogameCreate() {
             name="rating"
             onChange={(e) => handleChange(e)}
           />
-        
-        <div className="platforms_container">
-          <label className="rating"> Platforms </label>
-          <select
-            className="inputss"
-            onChange={(e) => handleSelectPlatforms(e)}
-          >
-            {platformsList.map((p) => (
-              <option key={p} value={p}>
-                {p}
-              </option>
-            ))}
-          </select>
-        </div>
-            {/*{platformsList.map((p) => (
-              <div key={p}>
-                <input
-                  className="platforms_input"
-                  type="checkbox"
-                  value={p}
-                  name="platforms"
-                  onChange={(e) => handleSelectPlatforms(e)}
-                ></input>
-                <label name={p}>{p}</label>
-              </div>
-            ))}*/}
-        
-        
+          {errors.rating && <p>{errors.rating}</p>}
+
+          <div className="platforms_container">
+            <label className="rating"> Platforms </label>
+            <select
+              className="inputss"
+              onChange={(e) => handleSelectPlatforms(e)}
+            >
+              {platformsList.map((p) => (
+                <option key={p} value={p}>
+                  {p}
+                </option>
+              ))}
+            </select>
+          </div>
           <input
             className="inputsss"
             placeholder="Image"
@@ -230,38 +228,38 @@ function VideogameCreate() {
             alt="not found"
             onChange={(e) => handleChange(e)}
           />
-        <div className="genres_container">
-          <label className="rating">Genres </label>
+          <div className="genres_container">
+            <label className="rating">Genres </label>
 
-          <select
-            className="inputss"
-            onChange={(e) => handleSelectGenre(e)}
-          >
-            {genre.map((g) => (
-              <option key={g} value={g}>
-                {g}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <button className="buttonCrear" type="submit">
-            CREATE
-          </button>
-        </div>
-      </form>
-      {input.genre.map((g) => (
-        <div className="x_genre_container">
-          <label className="genreX">{g}</label>
-          <button
-            className="butonX"
-            onClick={() => handleDeleteGenre(g)}
-          >
-            X
-          </button>
-        </div>
-      ))}
-    </div>
+            <select className="inputss" onChange={(e) => handleSelectGenre(e)}>
+              {genre.map((g) => (
+                <option key={g} value={g}>
+                  {g}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <button className="buttonCrear" type="submit">
+              CREATE
+            </button>
+          </div>
+        </form>
+        {input.genre.map((g, i) => (
+          <div key={i} className="x_genre_container">
+            <p>{g}</p>
+            <br />
+            <button
+              className="butonX"
+              value={g}
+              onClick={(g) => handleDeleteGenre(g)}
+            >
+              X
+            </button>
+          </div>
+        ))}
+        {errors.genre && <p>{errors.genres}</p>}
+      </div>
     </div>
   );
 }
