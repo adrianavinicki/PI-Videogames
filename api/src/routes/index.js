@@ -4,12 +4,9 @@ const { API_KEY, API_URL } = process.env;
 // Ejemplo: const authRouter = require('./auth.js');
 
 const e = require("express");
-
 const router = Router();
 
-//const { getAllVideogames } = require("../controllers/getAllVideogames");
-//const getApiData = require("../controllers/getApiData");
-//const { getIdAll } = require("../controllers/getIdAll");
+
 const getGenres = require("../controllers/getGenres");
 const { Genre, Videogame } = require("../db.js");
 const videogameController = require("../controllers/videogameController.js");
@@ -83,68 +80,3 @@ router.post("/videogames", videogameController.addVideogame);
 
 module.exports = router;
 
-/*router.post("/videogames", async (req, res) => {
-  try {
-    const {
-      name,
-      slug,
-      description,
-      released,
-      rating,
-      platforms,
-      background_image,
-      createdInDb,
-      genre,
-    } = req.body;
-    if (!name || !description || !platforms)
-      return res.status(400).send({ message: "information required" });
-
-    let videogameCreated = await Videogame.create({
-      name,
-      slug,
-      description,
-      released,
-      rating,
-      platforms,
-      background_image,
-      createdInDb,
-    });
-    let genreDb = await Genre.findAll({
-      where: { name: genre },
-    });
-    await videogameCreated.addGenre(genreDb);
-    res.status(200).send("Videogame creado con exito");//puedo poner que devuelva el creado videogameCreated
-  } catch (error) {
-    res.status(404).send({ error: error.message });
-  }
-});
-router.get("/videogames", async (req, res, next) => {
-  const name = req.query.name; //aplico ambas busquedas con name o sin name
-
-  let videogamesTodos = await getAllVideogames();
-  if (name) {
-    const newname = name
-      .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
-      .replace(' ', "-")
-      .toLowerCase();
-    let videogameName = await videogamesTodos.filter((el) =>
-      el.slug.includes(newname)
-    );
-    videogameName.length 
-      ? res.status(200).send(videogameName)
-      : res.status(404).send("No se encuentra el videojuego requerido");
-  } else {
-    res.status(200).send(videogamesTodos);
-  }
-});
-
-router.get("/videogames/:id", async (req, res) => {
-  const idDetail = req.params.id;
-
-  try {
-    let video = await getIdAll(idDetail);
-    res.status(200).json(video);
-  } catch (err) {
-    console.log(err);
-  }
-});*/

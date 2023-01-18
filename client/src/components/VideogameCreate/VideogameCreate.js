@@ -107,16 +107,7 @@ function VideogameCreate() {
     }
   }
 
-  /*const obj = {
-    name: input.name,
-    description: input.description,
-    background_image: input.background_image,
-    released: input.released,
-    rating: input.rating,
-    genre: input.genre,
-    platforms: input.platforms,
-  };
-  console.log("este es el :", obj);*/
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -182,7 +173,6 @@ function VideogameCreate() {
               <p className="error">{errors.description}</p>
             )}
           </div>
-          {/*ojo aca*/}
           <div className="released_container">
             <label className="released">Released </label>
             <input
@@ -193,7 +183,6 @@ function VideogameCreate() {
               onChange={(e) => handleChange(e)}
             />
           </div>
-
           <label className="rating">Rating: 0 to 5</label>
           <input
             className="input"

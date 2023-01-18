@@ -10,9 +10,6 @@ module.exports = (sequelize) => {
       allowNull: false, //no permite que falte el dato
       primaryKey: true, // sirve para considerar el campo de busqueda
     },
-    // idApi:{
-     //type: DataTypes.STRING,
-    //},
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -34,7 +31,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     platforms: {
-      type: DataTypes.JSON, // DataTypes.ARRAY(DataTypes.STRING),? ver si corresponde o NO correspoonde .ARRAY x que es un array de varias plataformas
+      type: DataTypes.JSON, // DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     background_image: {

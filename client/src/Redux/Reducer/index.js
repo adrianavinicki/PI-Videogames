@@ -3,7 +3,6 @@ const initialState = {
   allVideogames: [],
   genres: [],
   videogameById: [],
-  //videogamesByName: [],
   videogameCreate: null,
 };
 

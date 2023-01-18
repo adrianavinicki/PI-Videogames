@@ -31,29 +31,19 @@ export function getGenres() {
 }
 
 export function getVideogameById(id) {
-  if (id) {
-    return async function (dispatch) {
-      try {
-        let detail = await axios.get(`http://localhost:3001/videogames/${id.id}`);
+
+  return async function(dispatch){
+    try{
+      let detail = await axios.get(`http://localhost:3001/videogames/${id.id}`);
         console.log(detail.data)
         return dispatch({
           type: "GET_VIDEOGAME_BYID",
-          payload: detail.data,
+          payload: detail.data
         });
       } catch (error) {
         console.log(error);
       }
-    };
-  }
-  return {
-    type: "RESET",
-  };
-}
-
-export function clearDetails(){
-  return {
-      type: 'CLEAR_DETAILS' 
-  }
+    }
 }
 
 export function cleanDetail(){

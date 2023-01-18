@@ -27,31 +27,24 @@ const getIdDetail = async (idDetail) => {
     /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
   if (idDetail) {
     if (regexExp.test(idDetail) === true) {
-      const game = await Videogame.findByPk(idDetail);
-      if (!game) return console.log("not found");
-      else
-        return {
-          //game,
-          id: game.id,
-          name: game.name,
-          slug: game.slug,
-          description: game.description,
-          released: game.released,
-          rating: game.rating,
-          platforms: game.platforms,
-          background_image: game.background_image,
-          // genre: game.genres.map((el) => el.name),
-          createdInDb: game.createdInD,
-
-          /*include: {
-            model: Genre,
-            attributes: ["name"], //aca va lo unico que quiero igualmentente no hay mas
-            through: {
-              attributes: [],
-            },
-          },*/
-        };
-    } else {
+      const game = await Videogame.findOne({
+        where: {id: idDetail},
+        include: [{ model: Genre }],
+      });
+      return {
+        //game,
+        id: game.id,
+        name: game.name,
+        slug: game.slug,
+        description: game.description,
+        released: game.released,
+        rating: game.rating,
+        platforms: game.platforms,
+        background_image: game.background_image,
+        genre: game.genres.map((el) => el.name),
+        createdInDb: game.createdInD
+    } 
+  }else {
       let idDet = Number(idDetail); //se convierte el id en numero por si ingresa como string
       if (Number.isInteger(idDet)) {
         var gameId = await axios.get(`${API_URL}/${idDetail}?key=${API_KEY}`, {
@@ -162,3 +155,30 @@ module.exports = { getIdDetail };
        }
     }
     return "El Id ingresado no corresponde a un videogame";*/
+
+/*
+
+    const game = await Videogame.findByPk(idDetail);
+      if (!game) return console.log("game not found");
+      else
+        return {
+          //game,
+          id: game.id,
+          name: game.name,
+          slug: game.slug,
+          description: game.description,
+          released: game.released,
+          rating: game.rating,
+          platforms: game.platforms,
+          background_image: game.background_image,
+          // genre: game.genres.map((el) => el.name),
+          createdInDb: game.createdInD,
+
+          /*include: {
+            model: Genre,
+            attributes: ["name"], //aca va lo unico que quiero igualmentente no hay mas
+            through: {
+              attributes: [],
+            },
+          },
+        };*/
