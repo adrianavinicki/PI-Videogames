@@ -8,7 +8,7 @@
 .formCreate {
     width: 450px;
     margin: 0px 60px;
-    padding: 10px 20px;
+    padding: 10px 10px;
     box-sizing: border-box;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.3);
@@ -24,26 +24,26 @@ textarea {
     color: white;
     text-align: center;
     text-shadow: 2px 2px #000000;
-    padding-bottom: 40px;
-    font-size: 15px;
-    margin-bottom: 20px;
+    padding-bottom: 30px;
+    font-size: 25px;
+    margin-bottom: 1px;
     font-family: 'Russo One', sans-serif;
     letter-spacing: 8px;
 }
 
 .inputsss, textarea {
     width: 100%;
-    margin-bottom: 20px;
-    padding: 7px;
-    margin: 17px 0px;
+    margin-bottom: 1px;
+    padding: 3px;
+    margin: 1px 0px;
     box-sizing: border-box;
     font-size: 17px;
     border-radius: 7px;
-    background-color: rgba(125, 120, 193, 0.57);
+    background-color: rgba(173, 187, 187, 0.897);
 }
 
 .inputsss::placeholder{
-    color: white;
+    color: black;
 }
 
 textarea {
@@ -54,7 +54,7 @@ textarea {
 
 .button {
     background: #31384a;
-    color: white;
+    color: black;
     padding: 20px;
     margin: 0px 0px;
     cursor: pointer;
@@ -150,7 +150,7 @@ textarea {
 }
 
 .genresSelec {
-    margin-top: 10px;
+    margin-top: 17px;
 }
 
 .generos {
@@ -162,7 +162,7 @@ textarea {
     padding: 10px 20px;
     box-sizing: border-box;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(173, 187, 187, 0.897);
     border: #000000 solid;
     margin-bottom: 25px;
     flex-direction: column;
@@ -179,8 +179,8 @@ textarea {
     background-size: cover;
     background-attachment: fixed;
     font-size: 20px;
-    color: white;
-    background-color: #75739E;
+    color: black;
+    background-color: rgba(173, 187, 187, 0.897);
     border: solid 2px black;
 }
 
@@ -193,24 +193,24 @@ textarea {
 .released {
     margin-right: 5rem;
     font-size: 17px;
-    color: white;
+    color: black;
 }
 
 .rating {
-    margin-right: 5rem;
+    margin-right: 6rem;
     font-size: 17px;
-    color: white;
+    color: black;
 }
 
 .input{
     margin-right: 15rem;
-   /*margin-bottom: 20px;*/
+    margin-bottom: 5px;
     padding: 7px;
     margin: 17px 0px;
     box-sizing: border-box;
     font-size: 17px;
     border-radius: 7px;
-    background-color: rgba(125, 120, 193, 0.57);
+    background-color: rgba(173, 187, 187, 0.897);
 }
 
 .inputss{
@@ -221,7 +221,7 @@ textarea {
     box-sizing: border-box;
     font-size: 17px;
     border-radius: 7px;
-    background-color: rgba(125, 120, 193, 0.57);
+    background-color: rgba(173, 187, 187, 0.897);
 }
 
 .platforms_container {
@@ -234,4 +234,19 @@ textarea {
     margin-top: 1rem;
     margin-left: 1rem;
     justify-content: center;
+}
+
+.home {
+    text-decoration: none;
+    color:rgb(219, 12, 12);
+    justify-content: center;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    margin-bottom: 40px;
+    font-family: sans-serif;
+    letter-spacing: 8px;
+    font-size: 20px;
+    text-shadow: 2px 2px #000000;
 }
