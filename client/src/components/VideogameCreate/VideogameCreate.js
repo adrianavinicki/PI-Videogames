@@ -16,6 +16,9 @@ function validation(input) {
   if (!input.released) {
     errors.released = "Game must have a released date";
   }
+  if (!input.rating || input.rating < 0 || input.rating > 5) {
+    errors.rating = "Rating must be between 0 to 5";
+  }
   if (!input.platforms.length) {
     errors.platforms = "Please write a platform!";
   }
@@ -107,8 +110,6 @@ function VideogameCreate() {
     }
   }
 
-
-
   function handleSubmit(e) {
     e.preventDefault();
     setErrors(validation(input));
@@ -182,11 +183,12 @@ function VideogameCreate() {
               name="released"
               onChange={(e) => handleChange(e)}
             />
+            {errors.released && <p>{errors.released}</p>}
           </div>
           <label className="rating">Rating: 0 to 5</label>
           <input
             className="input"
-            type="decimal"
+            type="number"
             value={input.rating}
             min={0}
             max={5}

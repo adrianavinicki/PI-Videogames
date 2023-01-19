@@ -9,9 +9,6 @@ import "./Home2.css";
 import {
   getAllVideogames,
   getGenres,
-  getVideogameByName,
-  getVideogameById,
-  videogameCreate,
   filterGamesByGenre,
   filterCreatedIn,
   orderByName,
@@ -160,27 +157,3 @@ function Home() {
 
 export default Home;
 
-/*className="cards">
-      {allVideogames.length === 0 ? (
-        <div>Loading</div>
-      ) : (
-        allVideogames.map((video) => (
-          <Card
-            id={video.id}
-            name={video.name}
-            description={video.description}
-            released={video.released}
-            rating={video.rating}
-            platforms={
-              video.platforms.length === 0 ? (
-                <div>No Platform Available</div>
-              ) : (
-                video.platforms.map((platform) => platform.name)
-              )
-            }
-            background_image={video.background_image}
-            genre={video.genre}
-          />
-        ))
-      )}
-    </div>*/

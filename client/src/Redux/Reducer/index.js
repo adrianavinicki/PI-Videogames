@@ -56,30 +56,6 @@ export default function rootReducer(state = initialState, action) {
 
     case "FILTER_VIDEOGAME_GENRE":
       const allGames = state.allVideogames; // en este caso para que el filtro arranque de todos
-      /*const genresFilter = allGames.filter((e) => {
-        if (e.genre) {
-          const genres = e.genre;
-          return genres.includes(action.payload);
-        }
-      });
-      return {
-        ...state,
-        videogames: action.payload === "All" ? allGames : genresFilter,
-      };*/
-
-      // const allVideogames = state.allVideogames
-      /* const genresFilter =
-        action.payload === "All"
-          ? allGames
-          : allGames.filter((el) =>
-              el.genre?.some((e) => e.includes(action.payload))
-            );
-      console.log(genresFilter);
-      return {
-        ...state,
-        videogames: genresFilter,
-      };*/
-
       const genresFilter =
         action.payload === "All"
           ? state.allVideogames
