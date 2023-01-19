@@ -44,7 +44,7 @@ export default function Navbar({
           </select>
 
           <select className="select" onChange={(e) => handleFilterGenre(e)}>
-            <option>Sort by Genres</option>
+            <option>Filter by Genres</option>
             <option value="All">All</option>
 {
             allGenre.map((g, i) =>{
