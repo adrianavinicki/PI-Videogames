@@ -231,7 +231,8 @@ function VideogameCreate() {
             </select>
           </div>
           <div>
-            <button className="buttonCrear" type="submit">
+            <button className="buttonCrear" disabled= { input.name.length < 5 || input.background_image.length === 0 || input.description < 5 || input.rating.length < 1 || input.platforms.length < 1 || input.genre.length < 1 }
+             type="submit">
               CREATE
             </button>
           </div>

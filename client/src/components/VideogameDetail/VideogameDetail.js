@@ -29,7 +29,7 @@ function VideogameDetail(id) {
                     <div className="conTotal">
                         <div className="imgDesc">
                             <h1>{detail.name}</h1>
-                            <p><h2>Description:</h2> {detail.description.replace(/<p>/g, "")}</p>
+                            <p><h2>Description:</h2> {detail.description}</p>
                         </div>
                         <div className="infoGame">
                             <img src={detail.background_image} alt="logoimg" />

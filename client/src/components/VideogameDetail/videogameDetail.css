@@ -103,7 +103,7 @@
     border: 1px solid white;
     border-radius: 10px;
     color: white;
-    padding: 15px;
+    padding: 10px;
     background-color: rgba(8,30,48,0.8);
     box-shadow: 5px 1px 20px white;
 }
@@ -111,13 +111,13 @@
 .infoGame img {
     width: 500px;
     height: 350px;
-    border-radius: 28px;
+    border-radius: 10px;
 }
 
 .infoRest {
-    margin-top: 20px;
+    margin-top: 10px;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .imgDesc h1 {

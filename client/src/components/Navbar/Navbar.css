@@ -13,7 +13,7 @@
     margin-left: 1.5rem;
     height: 1.5rem;
     width: 8rem;
-    font-size: 17px;
+    font-size: 15px;
     border-color: rgb(48, 12, 12);
     border-top: none;
     border-left: none;
@@ -44,14 +44,14 @@
 
 
 .button2{
-  text-decoration: none;
-  color: rgb(184, 138, 23);
-  justify-content: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  cursor: pointer;
-  border-radius: 0.2rem;
-  outline: none;
-  border: none;
-  padding: 6px 22px;
+    text-decoration: none;
+    color: goldenrod;
+    justify-content: center;
+    margin-top: 0,5rem;
+    margin-bottom: 0rem;
+    cursor: pointer;
+    border-radius: 0.2rem;
+    outline: none;
+    border: none;
+    padding: 3px 12px;
 }

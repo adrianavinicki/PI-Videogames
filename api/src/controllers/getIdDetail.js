@@ -36,7 +36,7 @@ const getIdDetail = async (idDetail) => {
         id: game.id,
         name: game.name,
         slug: game.slug,
-        description: game.description,
+        description: game.description.replace(/<[^>]*>?/g, ''),
         released: game.released,
         rating: game.rating,
         platforms: game.platforms,
@@ -54,7 +54,7 @@ const getIdDetail = async (idDetail) => {
         return {
           id: gameId.data.id,
           name: gameId.data.name,
-          description: gameId.data.description,
+          description: gameId.data.description.replace(/<[^>]*>?/g, ''),
           released: gameId.data.released,
           rating: gameId.data.rating,
           platforms: gameId.data.platforms.map((el) => el.platform.name),
