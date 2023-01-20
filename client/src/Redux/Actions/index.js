@@ -72,21 +72,10 @@ export function getVideogameByName(name) {
 
 export function videogameCreate(payload) {
   return async function () {
-    //const json = JSON.stringify(payload);
-    // console.log("esto es json :", json);
     const response = await axios.post(
       "http://localhost:3001/videogames",
       payload
     )
-    
-    // .then((r) => {
-    //  dispatch({ type: "VIDEOGAME_CREATE", payload: r.data });
-    // });
-    //r.status === 200 && alert("Videogame created!")
-    //.catch((e) => alert("Error on creating Videogame"));
-    // } catch (error) {
-    //   alert("Error on creating Videogame");
-    // }
     return response;
   };
 }

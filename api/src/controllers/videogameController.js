@@ -1,9 +1,7 @@
 const axios = require("axios"); // instale axios para hacer las consultas a api, con
 require("dotenv").config(); //primeromejor traer el axios
 const { API_KEY, API_URL } = process.env;
-const { Videogame, Genre } = require("../db"); // es necesario traer los modelos directos de su carpeta o con traerlos de la db ya estaria?
-//const { v4: uuidv4 } = require("uuid");
-//const { getIdAll } = require("./getIdAll");
+const { Videogame, Genre } = require("../db"); 
 const { getIdDetail} = require("./getIdDetail");
 const { getAllVideogames } = require("./getAllVideogames");
 /*__POST /videogames__:
@@ -12,7 +10,6 @@ const { getAllVideogames } = require("./getAllVideogames");
 
 async function addVideogame(req, res, next) {
   try {
-    //const id = uuidv4();
     const {
       name,
       description,
@@ -97,52 +94,3 @@ async function getById(req, res, next) {
 
 module.exports = { addVideogame, getVideogames, getById };
 
-/*const apiData = await getApiData();
-    console.log("aca esta el dato :", apiData);
-
-    apiData.map(async (v) => {
-      const {
-        idApi,
-        name,
-        slug,
-        description,
-        released,
-        rating,
-        platforms,
-        background_image,
-        genre,
-      } = v;
-       let videogameCreated = await Videogame.create({
-        idApi,
-        name,
-        slug,
-        description,
-        released,
-        rating,
-        platforms,
-        background_image,
-        genre,
-      });
-      console.log("estos son los videos creados: ", videogameCreated);
-      let genreDb = await Genre.findOrCreate({
-        where : { name : genre.name }
-      });
-      await videogameCreated.addGenre(genreDb)
-    });
-    /*let genres = await Genre.findOrCreate({
-     genre
-    });*/
-/*await videogameCreated.addGenre(genreDb);*/
-/*let genres = apiData.map((e) => e.genre);
-    console.log("estos son los generos :", genres);
-    const genreNoRepetidos = [...new Set(genres)];
-    console.log("estos son los no repetidos:", genreNoRepetidos);
-    genreNoRepetidos.map(async (genre) => {
-      await Genre.findOrCreate({
-        where: { name: genre },
-      });
-    });
-    //console.log("este es genres: ", genres);
-    //await videogamesCreated.addGenre(genres);
-    const videogames = await Videogame.findAll();
-    console.log("esto es el final:", videogames);*/

@@ -130,13 +130,7 @@ function Home() {
                 )
               }
               background_image={video.background_image}
-              genre={
-                video.genre.length === 0 ? (
-                  <div>No Genre Available</div>
-                ) : (
-                  video.genre.map((genre) => genre.name)
-                )
-              }
+              genre={video.genre}
             />
             </div>
            </Link>

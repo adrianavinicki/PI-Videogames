@@ -5,7 +5,7 @@ import Landing from "./Components/Landing/Landing";
 import VideogameCreate from "./Components/VideogameCreate/VideogameCreate";
 import Home from "./Components/Home/Home";
 import VideogameDetail from "./Components/VideogameDetail/VideogameDetail";
-import Card from "./Components/Card/Card";
+
 
 function App() {
   return (

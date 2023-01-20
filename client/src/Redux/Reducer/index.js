@@ -45,10 +45,10 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         videogames: action.payload
-        //videogameCreate: action.json, //action.payload,
+        
       };
 
-    case "RESET": //VER SI CORRESPONDE
+    case "RESET": 
       return {
         ...state,
         videogames: [],

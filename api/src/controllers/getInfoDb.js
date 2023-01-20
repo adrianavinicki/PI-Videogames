@@ -16,18 +16,6 @@ const getInfoDb = async () => {
     },
   });
 
-  // console.log("esto es :", videogameDb[0].dataValues.genres[0].name);
- /* let genarr = [];
-  videogameDb.map((el) => {
-    el.genres.map((g) => {
-      genarr.push(g.name);
-    });
-  });*/
-
-  //agregar entre llaves un genre sobre el videogameDb
-
-  //console.log("esto es :", videogameDb);
-  //return videogameDb;
   let dbInfoTotal = videogameDb.map((video) => {
     return {
       id: video.id,

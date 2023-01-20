@@ -6,8 +6,8 @@ body {
 .card_grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 270px);
-  gap: 40px;
-  padding: 15px;
+  gap:40px;
+  padding: 10px;
   justify-content: center;
   transition: margin-left 0.3s 0.3s;
   font-family: sans-serif;

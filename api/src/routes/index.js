@@ -32,38 +32,7 @@ Incluir los géneros asociados*/
 
 router.get("/videogames/:id", videogameController.getById);
 
-/*async (req, res) =>{
-const {id} = req.params;
-  //  let gamesApi = await getAllVideoGames()
-	const url = `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
-	try{
-     if(id.includes('-')) {//detectar UUID en BD
-        const gameDb = await Videogame.findOne({
-                where: {id},
-                include: Genre,
-            });
-            return res.status(200).send(gameDb)
-       } 
-		const urlInfo = await axios.get(url, {
-      headers: { "Accept-Encoding": "identity" },
-    })
-		const game = {
-        id: urlInfo.data.id,
-        name: urlInfo.data.name,
-        background_image: urlInfo.data.background_image,
-        genre: urlInfo.data.genres.map((el) => el.name),
-        released: urlInfo.data.released,
-        rating: urlInfo.data.rating,
-        platforms: urlInfo.data.platforms.map((el) => el.platform.name),
-        description: urlInfo.data.description,
 
-      }
-      res.status(200).send(game)
-       
-	}catch(error){
-		res.status(404).send('error')
-	}
-})*/
 
 /*GET /genres:
 Obtener todos los tipos de géneros de videojuegos posibles

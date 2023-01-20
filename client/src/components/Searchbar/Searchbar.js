@@ -11,21 +11,12 @@ export default function SearchBar() {
   function handleInputChange(e) {
     e.preventDefault();
     setName(e.target.value);
-    //console.log(name);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    // if(!name.length){
-    //    alert('Please enter a videogame');
-    //if (name.length > 1) {
-      dispatch(getVideogameByName(name));
-     // setName("");
-    } /*else {
-        dispatch(getVideogameByName(name));//name es lo q está escribiendo el usuario
-        setName('');
-    }*/ //else alert("Sorry Videogame is not found");
- // }
+    dispatch(getVideogameByName(name));
+  }
 
   return (
     <div>
