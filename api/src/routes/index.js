@@ -17,6 +17,7 @@ const videogameController = require("../controllers/videogameController.js");
 Obtener un listado de los videojuegos
 Debe devolver solo los datos necesarios para la ruta principal*/
 
+
 router.get("/videogames", videogameController.getVideogames);
 
 /* GET /videogames?name="...":

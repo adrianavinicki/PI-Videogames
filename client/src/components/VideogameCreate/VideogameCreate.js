@@ -7,7 +7,6 @@ import "./VideogameCreate2.css";
 function validation(input) {
   let errors = {};
   if (!input.name) {
-    //trim elimina espacios en blanco que dejen cuando escriben
     errors.name = "Please write a name!";
   }
   if (!input.description) {

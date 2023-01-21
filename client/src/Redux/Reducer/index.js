@@ -12,7 +12,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         videogames: action.payload,
-        allVideogames: action.payload, //supuestamente esto hace que los filtros empiecen sobre todos los juegos y no sobre los filtros aplicados
+        allVideogames: action.payload, 
       };
 
     case "GET_GENRES":
@@ -55,7 +55,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case "FILTER_VIDEOGAME_GENRE":
-      const allGames = state.allVideogames; // en este caso para que el filtro arranque de todos
+      const allGames = state.allVideogames; 
       const genresFilter =
         action.payload === "All"
           ? state.allVideogames
